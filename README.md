@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# #JuntosSomosMásFuertes — MÍA Foundation
 
-## Getting Started
+Landing page for **MÍA — Mujer Influencia Actual Foundation, Inc.**, a Florida nonprofit (501(c)(3) pending) that empowers women, men, and youth through education, leadership, and humanitarian action.
 
-First, run the development server:
+Bilingual **ES/EN**. Built with **Next.js 16 · React 19 · TypeScript · Tailwind CSS · Framer Motion**.
+
+## Four worlds, one purpose
+
+The same content is presented as **four completely different designs** — each with its own layout, typography, and UI. A floating picker (top-right) navigates between them, so the foundation can experience each direction and choose.
+
+| World | Route | Design language |
+|---|---|---|
+| **Editorial** (default) | `/` | Magazine: masthead, print grid, drop caps, pull quotes, ruled dividers |
+| **Manifiesto** | `/manifiesto` | Activist poster: giant type, color blocks, marquees, sticker badges |
+| **Humano** | `/organico` | Organic: pastel gradients, blob shapes, floating pill-cards, soft everything |
+| **Panel** | `/panel` | Impact dashboard: sidebar, KPI tiles, progress meters, tabbed programs |
+
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # → http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Build & deploy
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Deploys to **Vercel** with zero configuration (Next.js App Router).
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
+- `app/` — one route per world; `app/layout.tsx` loads fonts + providers.
+- `components/worlds/<world>/` — each world's bespoke layout.
+- `components/shared/` — `WorldShell` (theme wrapper) + `WorldPicker` (navigation).
+- `lib/content.ts` — all copy as bilingual `{ es, en }` leaves (single source of truth).
+- `lib/team.ts`, `lib/worlds.ts` — team roster and world registry.
+- `public/images/` — image slots (see the README there to add photos).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+See `CLAUDE.md` for the full architecture notes.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*#JuntosSomosMásFuertes*

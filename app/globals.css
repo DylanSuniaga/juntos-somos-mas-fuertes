@@ -1,49 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================================
+   PER-WORLD TOKEN CONTRACT
+   Each "world" is a separate route with its OWN layout, type, and UI. The
+   palette + fonts + corner-feel for a world come from a [data-theme] block
+   set on that route's wrapper (WorldShell). Semantic Tailwind utilities
+   (bg-ground, text-ink, text-accent, font-display, rounded-token…) read
+   these vars, so a world's components stay palette-agnostic.
+   ========================================================================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ---- Editorial world · Gold & Ink ---- */
+:root,
+[data-theme="gold"] {
+  --ground: #fbf9f4;
+  --surface: #ffffff;
+  --surface-2: #f2ead9;
+  --ink: #211d18;
+  --muted: #6f6152;
+  --line: #ddd2bf;
+  --accent: #b8791b;
+  --accent-soft: #e0a72e;
+  --accent-deep: #8f5d12;
+  --accent-2: #7a6a58;
+  --gold: #b8791b;
+  --glow: rgba(184, 121, 27, 0.18);
+  --shadow: rgba(33, 29, 24, 0.16);
+  --radius: 3px;
+  --radius-lg: 6px;
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+}
+
+/* ---- Poster world · Violet & Gold ---- */
+[data-theme="violet"] {
+  --ground: #f4effb;
+  --surface: #ffffff;
+  --surface-2: #e7dcf7;
+  --ink: #1c1230;
+  --muted: #574a6e;
+  --line: #2a1c46;
+  --accent: #6a2bd9;
+  --accent-soft: #9b6fe0;
+  --accent-deep: #4a1e99;
+  --accent-2: #ff5da2;
+  --gold: #ffd23f;
+  --glow: rgba(106, 43, 217, 0.4);
+  --shadow: rgba(28, 18, 48, 0.28);
+  --radius: 0px;
+  --radius-lg: 0px;
+  --font-display: var(--font-anton);
+  --font-body: var(--font-space);
+  --font-mono: var(--font-space);
+}
+
+/* ---- Organic world · Rose & Plum ---- */
+[data-theme="rose"] {
+  --ground: #fdf6f2;
+  --surface: #ffffff;
+  --surface-2: #fbe9ea;
+  --ink: #4a2b33;
+  --muted: #96707a;
+  --line: #f2d9dc;
+  --accent: #e0698a;
+  --accent-soft: #f3a6bb;
+  --accent-deep: #c24d70;
+  --accent-2: #b98bc0;
+  --gold: #e8b06a;
+  --glow: rgba(224, 105, 138, 0.22);
+  --shadow: rgba(74, 43, 51, 0.14);
+  --radius: 20px;
+  --radius-lg: 34px;
+  --font-display: var(--font-poppins);
+  --font-body: var(--font-nunito);
+  --font-mono: var(--font-nunito);
+}
+
+/* ---- Dashboard world · Emerald & Gold ---- */
+[data-theme="emerald"] {
+  --ground: #f1f6f3;
+  --surface: #ffffff;
+  --surface-2: #e2ede7;
+  --ink: #10231b;
+  --muted: #547063;
+  --line: #cfe0d6;
+  --accent: #12805c;
+  --accent-soft: #2fae82;
+  --accent-deep: #0b5c42;
+  --accent-2: #3f8f7a;
+  --gold: #cf9b3f;
+  --glow: rgba(18, 128, 92, 0.2);
+  --shadow: rgba(16, 35, 27, 0.14);
+  --radius: 8px;
+  --radius-lg: 14px;
+  --font-display: var(--font-space);
+  --font-body: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    overflow-x: clip;
+    background-color: var(--ground);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: #ffffff;
   }
 }
 
-html {
-  height: 100%;
+/* thin accent scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-2);
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
+@media (prefers-reduced-motion: reduce) {
   html {
-    color-scheme: dark;
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 }
