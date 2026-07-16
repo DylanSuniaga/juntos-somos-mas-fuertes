@@ -14,16 +14,16 @@ The site presents the **same content** as **five genuinely different designs** �
 
 | World | Route | `data-theme` | Fonts | Design language |
 |---|---|---|---|---|
-| **Editorial** *(default)* | `/` | `gold` | Fraunces + Inter | Magazine: masthead, asymmetric print grid, drop caps, pull quotes, ruled dividers, contents index |
+| **Signature / Dossier** *(default)* | `/` | `paper` | Playfair Display + Poppins | Refined institutional: Didone serif heads under short red rules, red icon badges, red-hairline two-column text, hero + photo plates w/ circular badge. Public-facing — **brand-manual meta was removed** (no logo-specimen tiles, no palette page). |
+| **Editorial** | `/revista` | `gold` | Fraunces + Inter | Magazine: masthead, asymmetric print grid, drop caps, pull quotes, ruled dividers, contents index |
 | **Poster / Manifiesto** | `/manifiesto` | `violet` | Anton + Space Grotesk | Activist: giant type, full-bleed color blocks, marquees, sticker badges, sharp corners |
 | **Organic / Human** | `/organico` | `rose` | Poppins + Nunito | Soft: blob shapes, pastel gradients, whitespace, floating pill-cards, wave dividers, circular avatars |
 | **Dashboard** | `/panel` | `emerald` | Space Grotesk + Inter + JetBrains Mono | App-shell: sidebar TOC, KPI tiles, progress meters, tabbed program explorer, mono accents |
-| **Brand Book / Dossier** | `/marca` | `paper` | Playfair Display + Poppins | Brand manual (mirrors the marca PDF): Didone serif heads under short red rules, logo specimen tiles, red icon badges, red-hairline columns, photo plates w/ circular badge, palette strip |
 
 ## Commands
 
 ```bash
-npm run dev      # dev (Turbopack) → http://localhost:3000  ·  worlds at / /manifiesto /organico /panel /marca
+npm run dev      # dev (Turbopack) → http://localhost:3000  ·  worlds: / (Signature, default) /revista /manifiesto /organico /panel
 npm run build    # production build (run before every deploy)
 npm start        # serve the build
 ```

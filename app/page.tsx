@@ -1,10 +1,10 @@
 import { WorldShell } from "@/components/shared/WorldShell";
-import { EditorialWorld } from "@/components/worlds/editorial/EditorialWorld";
+import { DossierWorld } from "@/components/worlds/dossier/DossierWorld";
 
 export default function Page() {
   return (
-    <WorldShell world="editorial">
-      <EditorialWorld />
+    <WorldShell world="dossier">
+      <DossierWorld />
     </WorldShell>
   );
 }

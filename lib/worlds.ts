@@ -19,8 +19,16 @@ export type World = {
 
 export const WORLDS: World[] = [
   {
-    id: "editorial",
+    id: "dossier",
     path: "/",
+    theme: "paper",
+    label: { es: "Insignia", en: "Signature" },
+    feel: { es: "Institucional", en: "Institutional" },
+    swatches: ["#dc0708", "#593622", "#1c1a17"],
+  },
+  {
+    id: "editorial",
+    path: "/revista",
     theme: "gold",
     label: { es: "Revista", en: "Editorial" },
     feel: { es: "Reporte editorial", en: "Magazine report" },
@@ -49,14 +57,6 @@ export const WORLDS: World[] = [
     label: { es: "Panel", en: "Dashboard" },
     feel: { es: "Impacto / datos", en: "Impact / data" },
     swatches: ["#dc0708", "#bfbebd", "#1a1a1e"],
-  },
-  {
-    id: "dossier",
-    path: "/marca",
-    theme: "paper",
-    label: { es: "Marca", en: "Brand Book" },
-    feel: { es: "Manual de marca", en: "Brand manual" },
-    swatches: ["#dc0708", "#593622", "#1c1a17"],
   },
 ];
 

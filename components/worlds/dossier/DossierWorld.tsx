@@ -80,30 +80,7 @@ const Icons = {
   check: (<path d="m5 12 4.5 4.5L19 7" />),
 } as const;
 
-/** Logo shown in a bordered "specimen" tile, like the PDF's Logotipo page. */
-function LogoTiles({ className = "" }: { className?: string }) {
-  const { tr } = useLang();
-  return (
-    <div className={`grid grid-cols-2 gap-4 ${className}`}>
-      {[
-        { src: "/images/logo-red.png", bg: "bg-accent", label: { es: "Principal", en: "Primary" } as Bi },
-        { src: "/images/logo-black.png", bg: "bg-ink", label: { es: "Monocromo", en: "Monochrome" } as Bi },
-      ].map((t) => (
-        <figure key={t.src} className="overflow-hidden rounded-token border border-line bg-surface shadow-card">
-          <div className={`${t.bg} flex items-center justify-center p-6 sm:p-8`}>
-            <Image src={t.src} alt="MÍA Foundation" width={180} height={180} className="h-24 w-24 object-contain sm:h-28 sm:w-28" />
-          </div>
-          <figcaption className="flex items-center justify-between px-4 py-2.5">
-            <Kicker tone="muted">{tr(t.label)}</Kicker>
-            <span className="font-mono text-[0.6rem] text-muted">.PNG</span>
-          </figcaption>
-        </figure>
-      ))}
-    </div>
-  );
-}
-
-/** Photo plate carrying a small circular MÍA badge in the corner (PDF motif). */
+/** Photo plate carrying a small circular MÍA badge in the corner. */
 function Plate({
   src,
   label,
@@ -188,15 +165,6 @@ export function DossierWorld() {
     { icon: Icons.flag, label: content.mission.missionLabel, body: content.mission.mission },
   ];
 
-  const palette = [
-    { name: { es: "Principal 1", en: "Primary 1" } as Bi, hex: "#DC0708", bg: "#dc0708", light: false },
-    { name: { es: "Principal 2", en: "Primary 2" } as Bi, hex: "#F2F2F2", bg: "#f2f2f2", light: true },
-    { name: { es: "Secundario", en: "Secondary" } as Bi, hex: "#593622", bg: "#593622", light: false },
-    { name: { es: "Secundario", en: "Secondary" } as Bi, hex: "#D99F7E", bg: "#d99f7e", light: true },
-    { name: { es: "Secundario", en: "Secondary" } as Bi, hex: "#BFBEBD", bg: "#bfbebd", light: true },
-    { name: { es: "Secundario", en: "Secondary" } as Bi, hex: "#D9D9D9", bg: "#d9d9d9", light: true },
-  ];
-
   return (
     <div className="font-body text-ink">
       {/* ===== MASTHEAD ===== */}
@@ -204,7 +172,7 @@ export function DossierWorld() {
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
           <div className="flex items-center gap-3">
             <Image src="/images/logo-red.png" alt="MÍA Foundation" width={40} height={40} className="h-10 w-10 rounded-token" priority />
-            <Kicker tone="muted">{tr({ es: "Manual de Marca", en: "Brand Manual" })}</Kicker>
+            <Kicker tone="muted">{tr({ es: "Mujer Influencia Actual", en: "Mujer Influencia Actual" })}</Kicker>
           </div>
           <span className="hidden font-mono text-[0.62rem] uppercase tracking-[0.24em] text-muted sm:block">
             MÍA · Miami · 2026
@@ -230,10 +198,13 @@ export function DossierWorld() {
             </div>
           </div>
           <Reveal>
-            <LogoTiles />
-            <p className="mt-4 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-muted">
-              {tr({ es: "Logotipo · versiones aprobadas", en: "Logotype · approved versions" })}
-            </p>
+            <PlaceholderImage
+              src="/images/hero.jpg"
+              label={content.hero.imageLabel}
+              aspect="4 / 5"
+              priority
+              sizes="(max-width: 1024px) 100vw, 480px"
+            />
           </Reveal>
         </div>
 
@@ -250,7 +221,7 @@ export function DossierWorld() {
       {/* ===== EL SÍMBOLO ===== */}
       <section className="border-t border-line bg-surface">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-          <SectionHead index="01" kicker={tr({ es: "Identidad", en: "Identity" })}>
+          <SectionHead index="01" kicker={tr({ es: "Nuestra esencia", en: "Our essence" })}>
             {tr({ es: "El símbolo", en: "The symbol" })}
           </SectionHead>
           <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
@@ -530,26 +501,6 @@ export function DossierWorld() {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== PALETA (brand-book nod) ===== */}
-      <section className="border-t border-line bg-surface">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-          <SectionHead kicker={tr({ es: "Identidad", en: "Identity" })}>
-            {tr({ es: "Paleta de color", en: "Color palette" })}
-          </SectionHead>
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            {palette.map((c, i) => (
-              <figure key={i} className="overflow-hidden rounded-token border border-line shadow-card">
-                <div className="h-24" style={{ background: c.bg }} />
-                <figcaption className={`px-3 py-2.5 ${c.light ? "bg-surface" : "bg-surface"}`}>
-                  <Kicker tone="muted">{tr(c.name)}</Kicker>
-                  <span className="mt-1 block font-mono text-[0.72rem] font-semibold text-ink">{c.hex}</span>
-                </figcaption>
-              </figure>
-            ))}
           </div>
         </div>
       </section>
