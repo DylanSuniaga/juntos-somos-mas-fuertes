@@ -1,3 +1,7 @@
+# Build output — Vercel rebuilds this on its servers; never upload it (~86MB).
+.next
+node_modules
+
 # Raw brand/asset kit (~45MB) from Drive — not used by the build; the optimized
-# web versions live in /public/images. Keeps CLI deploys fast.
+# web versions the app uses live in /public/images.
 LANDING PAGE MIA FOUNDATION
