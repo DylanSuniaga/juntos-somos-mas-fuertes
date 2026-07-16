@@ -5,12 +5,12 @@ import type { Bi } from "@/components/providers/LanguageProvider";
  * typography, and UI (not just a recolor). The picker navigates between them.
  * `theme` is the [data-theme] value WorldShell stamps for the palette/fonts.
  */
-export type WorldId = "editorial" | "poster" | "organic" | "dashboard";
+export type WorldId = "editorial" | "poster" | "organic" | "dashboard" | "dossier";
 
 export type World = {
   id: WorldId;
   path: string;
-  theme: "gold" | "violet" | "rose" | "emerald";
+  theme: "gold" | "violet" | "rose" | "emerald" | "paper";
   label: Bi;
   feel: Bi;
   /** [accent, accent-2, ink] swatch chip */
@@ -24,7 +24,7 @@ export const WORLDS: World[] = [
     theme: "gold",
     label: { es: "Revista", en: "Editorial" },
     feel: { es: "Reporte editorial", en: "Magazine report" },
-    swatches: ["#b8791b", "#7a6a58", "#211d18"],
+    swatches: ["#dc0708", "#593622", "#23150e"],
   },
   {
     id: "poster",
@@ -32,7 +32,7 @@ export const WORLDS: World[] = [
     theme: "violet",
     label: { es: "Manifiesto", en: "Manifesto" },
     feel: { es: "Cartel / campaña", en: "Poster / campaign" },
-    swatches: ["#6a2bd9", "#ff5da2", "#1c1230"],
+    swatches: ["#dc0708", "#d99f7e", "#111111"],
   },
   {
     id: "organic",
@@ -40,7 +40,7 @@ export const WORLDS: World[] = [
     theme: "rose",
     label: { es: "Humano", en: "Human" },
     feel: { es: "Orgánico / cálido", en: "Organic / warm" },
-    swatches: ["#e0698a", "#b98bc0", "#4a2b33"],
+    swatches: ["#dc0708", "#bfbebd", "#4a2f22"],
   },
   {
     id: "dashboard",
@@ -48,7 +48,15 @@ export const WORLDS: World[] = [
     theme: "emerald",
     label: { es: "Panel", en: "Dashboard" },
     feel: { es: "Impacto / datos", en: "Impact / data" },
-    swatches: ["#12805c", "#3f8f7a", "#10231b"],
+    swatches: ["#dc0708", "#bfbebd", "#1a1a1e"],
+  },
+  {
+    id: "dossier",
+    path: "/marca",
+    theme: "paper",
+    label: { es: "Marca", en: "Brand Book" },
+    feel: { es: "Manual de marca", en: "Brand manual" },
+    swatches: ["#dc0708", "#593622", "#1c1a17"],
   },
 ];
 

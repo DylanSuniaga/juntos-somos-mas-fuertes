@@ -7,6 +7,7 @@ import {
   Poppins,
   Nunito,
   JetBrains_Mono,
+  Playfair_Display,
 } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
@@ -60,6 +61,15 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
   preload: false,
 });
+/* Dossier world — Didone serif for the brand-manual look. */
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
+  display: "swap",
+  preload: false,
+});
 
 const fontVars = [
   fraunces.variable,
@@ -69,6 +79,7 @@ const fontVars = [
   poppins.variable,
   nunito.variable,
   jetbrains.variable,
+  playfair.variable,
 ].join(" ");
 
 const SITE = "https://mia-foundation.org";
@@ -89,7 +100,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fbf9f4",
+  themeColor: "#f2f2f2",
   viewportFit: "cover",
 };
 

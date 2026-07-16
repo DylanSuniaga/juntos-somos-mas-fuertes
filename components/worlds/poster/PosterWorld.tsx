@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import Image from "next/image";
 import { content, brand } from "@/lib/content";
 import { foundingTeam, board } from "@/lib/team";
 import { useLang } from "@/components/providers/LanguageProvider";
@@ -113,13 +114,23 @@ export function PosterWorld() {
       {/* ===== HERO ===== */}
       <section className="relative overflow-hidden bg-accent px-5 pb-16 pt-20 text-surface sm:px-8 sm:pt-24">
         <div className="mx-auto max-w-6xl">
-          <div className="flex items-center gap-3">
-            <Sticker tone="gold" rotate="-4deg">
-              {tr({ es: "Fundación · Desde 2020", en: "Foundation · Since 2020" })}
-            </Sticker>
-            <Sticker tone="pink" rotate="3deg">
-              {tr({ es: "24 países", en: "24 countries" })}
-            </Sticker>
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <Sticker tone="gold" rotate="-4deg">
+                {tr({ es: "Fundación · Desde 2020", en: "Foundation · Since 2020" })}
+              </Sticker>
+              <Sticker tone="pink" rotate="3deg">
+                {tr({ es: "24 países", en: "24 countries" })}
+              </Sticker>
+            </div>
+            <Image
+              src="/images/logo-black.png"
+              alt="MÍA Foundation"
+              width={72}
+              height={72}
+              priority
+              className="hidden h-16 w-16 border-2 border-surface sm:block"
+            />
           </div>
           <h1 className="mt-6 font-display text-[3.4rem] font-normal uppercase leading-[0.86] tracking-tight sm:text-[6rem] lg:text-[8.5rem]">
             {tr({ es: "La influencia", en: "The influence" })}
@@ -371,8 +382,14 @@ export function PosterWorld() {
       <footer className="bg-ink px-5 py-12 text-surface sm:px-8">
         <div className="mx-auto flex max-w-6xl flex-col justify-between gap-6 sm:flex-row">
           <div>
-            <div className="font-display text-4xl uppercase">MÍA</div>
-            <p className="mt-1 text-sm text-surface/70">{brand.legalName}</p>
+            <Image
+              src="/images/logo-red.png"
+              alt="MÍA Foundation"
+              width={72}
+              height={72}
+              className="h-16 w-16"
+            />
+            <p className="mt-3 text-sm text-surface/70">{brand.legalName}</p>
             <p className="text-sm text-surface/70">{tr(brand.jurisdiction)}</p>
           </div>
           <div className="text-sm text-surface/70">

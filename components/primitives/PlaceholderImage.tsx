@@ -52,7 +52,7 @@ export function PlaceholderImage({
             className="pointer-events-none absolute inset-0 opacity-70"
             style={{
               background:
-                "radial-gradient(120% 80% at 100% 0%, var(--glow-b), transparent 55%), radial-gradient(120% 90% at 0% 100%, var(--glow-c), transparent 60%)",
+                "radial-gradient(120% 80% at 100% 0%, var(--glow), transparent 55%), radial-gradient(120% 90% at 0% 100%, var(--glow), transparent 60%)",
             }}
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">

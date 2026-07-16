@@ -15,22 +15,30 @@
   color-scheme: light;
 }
 
-/* ---- Editorial world · Gold & Ink ---- */
+/* =========================================================================
+   MÍA brand palette — one brand, four expressions.
+   Shared thread on every world: --accent = red #dc0708, ground = off-white,
+   --surface = #fff. Each world then leans into a different brand SECONDARY
+   (brown / black / clay+lavender / gray) so the four stay distinct.
+   Fonts + --radius are per-world differentiators — untouched by the reskin.
+   ========================================================================= */
+
+/* ---- Editorial world · Red ink press (brown + clay on paper) ---- */
 :root,
 [data-theme="gold"] {
-  --ground: #fbf9f4;
+  --ground: #f2f2f2;
   --surface: #ffffff;
-  --surface-2: #f2ead9;
-  --ink: #211d18;
-  --muted: #6f6152;
-  --line: #ddd2bf;
-  --accent: #b8791b;
-  --accent-soft: #e0a72e;
-  --accent-deep: #8f5d12;
-  --accent-2: #7a6a58;
-  --gold: #b8791b;
-  --glow: rgba(184, 121, 27, 0.18);
-  --shadow: rgba(33, 29, 24, 0.16);
+  --surface-2: #ece9e3;
+  --ink: #23150e;
+  --muted: #6d5a4c;
+  --line: #d8cfc4;
+  --accent: #dc0708;
+  --accent-soft: #f04446;
+  --accent-deep: #a80506;
+  --accent-2: #593622;
+  --gold: #d99f7e;
+  --glow: rgba(220, 7, 8, 0.16);
+  --shadow: rgba(35, 21, 14, 0.16);
   --radius: 3px;
   --radius-lg: 6px;
   --font-display: var(--font-fraunces);
@@ -38,21 +46,24 @@
   --font-mono: var(--font-jetbrains);
 }
 
-/* ---- Poster world · Violet & Gold ---- */
+/* ---- Poster world · Activist red & black (clay/gray pops) ----
+   NOTE: --accent-2 and --gold are used as LIGHT block backgrounds with dark
+   text-ink on top (marquee, campaign bg, stickers, buttons) AND as bright text
+   on black — both must stay light. Black lives in --ink/--line, not here. */
 [data-theme="violet"] {
-  --ground: #f4effb;
+  --ground: #f2f2f2;
   --surface: #ffffff;
-  --surface-2: #e7dcf7;
-  --ink: #1c1230;
-  --muted: #574a6e;
-  --line: #2a1c46;
-  --accent: #6a2bd9;
-  --accent-soft: #9b6fe0;
-  --accent-deep: #4a1e99;
-  --accent-2: #ff5da2;
-  --gold: #ffd23f;
-  --glow: rgba(106, 43, 217, 0.4);
-  --shadow: rgba(28, 18, 48, 0.28);
+  --surface-2: #e7e5e2;
+  --ink: #111111;
+  --muted: #4a4a4a;
+  --line: #111111;
+  --accent: #dc0708;
+  --accent-soft: #ff3b3c;
+  --accent-deep: #b00506;
+  --accent-2: #d99f7e;
+  --gold: #bfbebd;
+  --glow: rgba(220, 7, 8, 0.35);
+  --shadow: rgba(17, 17, 17, 0.28);
   --radius: 0px;
   --radius-lg: 0px;
   --font-display: var(--font-anton);
@@ -60,21 +71,21 @@
   --font-mono: var(--font-space);
 }
 
-/* ---- Organic world · Rose & Plum ---- */
+/* ---- Organic world · Soft & human (clay + lavender pastels) ---- */
 [data-theme="rose"] {
-  --ground: #fdf6f2;
+  --ground: #f7f1ec;
   --surface: #ffffff;
-  --surface-2: #fbe9ea;
-  --ink: #4a2b33;
-  --muted: #96707a;
-  --line: #f2d9dc;
-  --accent: #e0698a;
-  --accent-soft: #f3a6bb;
-  --accent-deep: #c24d70;
-  --accent-2: #b98bc0;
-  --gold: #e8b06a;
-  --glow: rgba(224, 105, 138, 0.22);
-  --shadow: rgba(74, 43, 51, 0.14);
+  --surface-2: #f0e6de;
+  --ink: #4a2f22;
+  --muted: #8a6f60;
+  --line: #ecdccf;
+  --accent: #dc0708;
+  --accent-soft: #d99f7e;
+  --accent-deep: #b00506;
+  --accent-2: #bfbebd;
+  --gold: #d99f7e;
+  --glow: rgba(217, 159, 126, 0.30);
+  --shadow: rgba(74, 47, 34, 0.14);
   --radius: 20px;
   --radius-lg: 34px;
   --font-display: var(--font-poppins);
@@ -82,25 +93,47 @@
   --font-mono: var(--font-nunito);
 }
 
-/* ---- Dashboard world · Emerald & Gold ---- */
+/* ---- Dashboard world · Data app-shell (gray UI + red KPIs) ---- */
 [data-theme="emerald"] {
-  --ground: #f1f6f3;
+  --ground: #f1f1f3;
   --surface: #ffffff;
-  --surface-2: #e2ede7;
-  --ink: #10231b;
-  --muted: #547063;
-  --line: #cfe0d6;
-  --accent: #12805c;
-  --accent-soft: #2fae82;
-  --accent-deep: #0b5c42;
-  --accent-2: #3f8f7a;
-  --gold: #cf9b3f;
-  --glow: rgba(18, 128, 92, 0.2);
-  --shadow: rgba(16, 35, 27, 0.14);
+  --surface-2: #e6e6ea;
+  --ink: #1a1a1e;
+  --muted: #6b6b73;
+  --line: #d9d9d9;
+  --accent: #dc0708;
+  --accent-soft: #f04446;
+  --accent-deep: #a80506;
+  --accent-2: #bfbebd;
+  --gold: #d99f7e;
+  --glow: rgba(220, 7, 8, 0.20);
+  --shadow: rgba(20, 20, 25, 0.14);
   --radius: 8px;
   --radius-lg: 14px;
   --font-display: var(--font-space);
   --font-body: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+}
+
+/* ---- Dossier world · Brand manual (Didone serif on paper, red rules) ---- */
+[data-theme="paper"] {
+  --ground: #f2f2f2;
+  --surface: #ffffff;
+  --surface-2: #e8e8e6;
+  --ink: #1c1a17;
+  --muted: #6b6560;
+  --line: #d6d3ce;
+  --accent: #dc0708;
+  --accent-soft: #f04446;
+  --accent-deep: #b00506;
+  --accent-2: #593622;
+  --gold: #d99f7e;
+  --glow: rgba(220, 7, 8, 0.14);
+  --shadow: rgba(30, 25, 20, 0.14);
+  --radius: 2px;
+  --radius-lg: 4px;
+  --font-display: var(--font-playfair);
+  --font-body: var(--font-poppins);
   --font-mono: var(--font-jetbrains);
 }
 

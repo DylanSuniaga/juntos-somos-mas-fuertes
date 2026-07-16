@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import Image from "next/image";
 import { content, brand } from "@/lib/content";
 import { foundingTeam, board } from "@/lib/team";
 import { useLang } from "@/components/providers/LanguageProvider";
@@ -81,11 +82,21 @@ export function OrganicWorld() {
           aria-hidden
         />
         <span
-          className="pointer-events-none absolute -right-10 top-40 h-52 w-52 opacity-50 blur-2xl"
-          style={{ background: "var(--surface-2)", borderRadius: "58% 42% 37% 63% / 55% 48% 52% 45%" }}
+          className="pointer-events-none absolute -right-10 top-40 h-52 w-52 opacity-60 blur-2xl"
+          style={{ background: "var(--accent-2)", borderRadius: "58% 42% 37% 63% / 55% 48% 52% 45%" }}
           aria-hidden
         />
         <div className="relative mx-auto max-w-3xl">
+          <Reveal>
+            <Image
+              src="/images/logo-red.png"
+              alt="MÍA — Mujer Influencia Actual Foundation"
+              width={88}
+              height={88}
+              priority
+              className="mx-auto mb-6 h-20 w-20 rounded-3xl shadow-[0_18px_40px_-16px_var(--shadow)]"
+            />
+          </Reveal>
           <Reveal>
             <Eyebrow>{content.hero.hashtag}</Eyebrow>
           </Reveal>
@@ -104,6 +115,7 @@ export function OrganicWorld() {
         <Reveal className="relative mx-auto mt-12 max-w-4xl">
           <div className="overflow-hidden rounded-[2.5rem] shadow-[0_30px_70px_-30px_var(--shadow)]">
             <PlaceholderImage
+              src="/images/hero-wide.jpg"
               label={content.hero.imageLabel}
               aspect="16 / 9"
               priority
@@ -134,6 +146,7 @@ export function OrganicWorld() {
             <Reveal>
               <div className="overflow-hidden rounded-[2.5rem] shadow-[0_24px_60px_-28px_var(--shadow)]">
                 <PlaceholderImage
+                  src="/images/why-mia.jpg"
                   label={content.why.imageLabel}
                   aspect="4 / 5"
                   className="!rounded-none !border-0 !shadow-none"
@@ -223,6 +236,7 @@ export function OrganicWorld() {
           <Reveal>
             <div className="overflow-hidden rounded-[2.5rem] shadow-[0_24px_60px_-28px_var(--shadow)]">
               <PlaceholderImage
+                src="/images/campaign.jpg"
                 label={content.campaign.imageLabel}
                 aspect="4 / 3"
                 className="!rounded-none !border-0 !shadow-none"
@@ -326,9 +340,19 @@ export function OrganicWorld() {
                     .join("");
                   return (
                     <div key={`${p.name}-${i}`} className="w-36 text-center">
-                      <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-surface-2 to-white text-2xl font-bold text-accent shadow-[0_16px_36px_-18px_var(--shadow)] ring-4 ring-white">
-                        {initials}
-                      </div>
+                      {p.photo ? (
+                        <Image
+                          src={p.photo}
+                          alt={p.name}
+                          width={96}
+                          height={96}
+                          className="mx-auto h-24 w-24 rounded-full object-cover shadow-[0_16px_36px_-18px_var(--shadow)] ring-4 ring-white"
+                        />
+                      ) : (
+                        <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-surface-2 to-white text-2xl font-bold text-accent shadow-[0_16px_36px_-18px_var(--shadow)] ring-4 ring-white">
+                          {initials}
+                        </div>
+                      )}
                       <h4 className="mt-3 font-display text-sm font-semibold text-ink">
                         {p.name}
                       </h4>
@@ -429,7 +453,13 @@ export function OrganicWorld() {
       {/* ===== FOOTER ===== */}
       <footer className="bg-surface px-5 py-12 sm:px-8">
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-4 text-center">
-          <div className="font-display text-3xl font-bold text-ink">MÍA</div>
+          <Image
+            src="/images/logo-red.png"
+            alt="MÍA Foundation"
+            width={64}
+            height={64}
+            className="h-16 w-16 rounded-2xl shadow-[0_14px_30px_-16px_var(--shadow)]"
+          />
           <p className="text-sm text-muted">
             {brand.legalName} · {tr(brand.jurisdiction)}
           </p>

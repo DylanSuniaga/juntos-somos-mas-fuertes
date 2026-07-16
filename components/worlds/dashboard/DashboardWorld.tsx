@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import Image from "next/image";
 import { content, brand } from "@/lib/content";
 import { foundingTeam, board } from "@/lib/team";
 import { useLang, type Bi } from "@/components/providers/LanguageProvider";
@@ -26,15 +27,25 @@ function SectionCode({ code, label }: { code: string; label: string }) {
   );
 }
 
-function Meter({ value, label }: { value: number; label: string }) {
+function Meter({
+  value,
+  label,
+  tone = "accent",
+}: {
+  value: number;
+  label: string;
+  tone?: "accent" | "gold" | "accent-2";
+}) {
+  const bar =
+    tone === "gold" ? "bg-gold" : tone === "accent-2" ? "bg-accent-2" : "bg-accent";
   return (
     <div>
       <div className="flex justify-between font-mono text-[0.7rem] text-muted">
         <span>{label}</span>
-        <span className="text-accent">{value}%</span>
+        <span className="text-ink">{value}%</span>
       </div>
       <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-surface-2">
-        <div className="h-full rounded-full bg-accent" style={{ width: `${value}%` }} />
+        <div className={`h-full rounded-full ${bar}`} style={{ width: `${value}%` }} />
       </div>
     </div>
   );
@@ -61,10 +72,19 @@ export function DashboardWorld() {
     <div className="font-body text-ink lg:grid lg:grid-cols-[248px_1fr]">
       {/* ===== SIDEBAR ===== */}
       <aside className="sticky top-0 z-30 hidden h-screen flex-col border-r border-line bg-surface/70 px-5 py-6 backdrop-blur lg:flex">
-        <div>
-          <div className="font-display text-2xl font-bold tracking-tight">MÍA</div>
-          <div className="mt-1 font-mono text-[0.62rem] uppercase tracking-wider text-muted">
-            {tr({ es: "Panel de impacto", en: "Impact panel" })}
+        <div className="flex items-center gap-3">
+          <Image
+            src="/images/logo-red.png"
+            alt="MÍA Foundation"
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-token"
+          />
+          <div>
+            <div className="font-display text-2xl font-bold leading-none tracking-tight">MÍA</div>
+            <div className="mt-1 font-mono text-[0.62rem] uppercase tracking-wider text-muted">
+              {tr({ es: "Panel de impacto", en: "Impact panel" })}
+            </div>
           </div>
         </div>
         <div className="mt-3 flex items-center gap-2 font-mono text-[0.62rem] uppercase tracking-wider text-accent">
@@ -230,8 +250,8 @@ export function DashboardWorld() {
             </p>
             <div className="mt-5 grid gap-3 sm:grid-cols-3">
               <Meter value={[82, 74, 68][tab]} label={tr({ es: "Alcance", en: "Reach" })} />
-              <Meter value={[70, 88, 60][tab]} label={tr({ es: "Actividad", en: "Activity" })} />
-              <Meter value={[64, 71, 90][tab]} label={tr({ es: "Impacto", en: "Impact" })} />
+              <Meter value={[70, 88, 60][tab]} label={tr({ es: "Actividad", en: "Activity" })} tone="gold" />
+              <Meter value={[64, 71, 90][tab]} label={tr({ es: "Impacto", en: "Impact" })} tone="accent-2" />
             </div>
           </Tile>
         </section>

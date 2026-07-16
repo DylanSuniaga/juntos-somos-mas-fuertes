@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import Image from "next/image";
 import { content, brand } from "@/lib/content";
 import { foundingTeam, board } from "@/lib/team";
 import { useLang, type Bi } from "@/components/providers/LanguageProvider";
@@ -126,6 +127,7 @@ export function EditorialWorld() {
           <div className="lg:col-span-5">
             <Reveal>
               <PlaceholderImage
+                src="/images/hero.jpg"
                 label={content.hero.imageLabel}
                 aspect="4 / 5"
                 priority
@@ -157,7 +159,7 @@ export function EditorialWorld() {
             <div className="lg:col-span-5">
               <SectionTitle>{tr(content.why.title)}</SectionTitle>
               <Reveal className="mt-6">
-                <PlaceholderImage label={content.why.imageLabel} aspect="4 / 3" />
+                <PlaceholderImage src="/images/why-mia.jpg" label={content.why.imageLabel} aspect="4 / 3" />
               </Reveal>
             </div>
             <div className="lg:col-span-7">
@@ -235,7 +237,7 @@ export function EditorialWorld() {
             </div>
             <div className="lg:col-span-5">
               <Reveal>
-                <PlaceholderImage label={content.matters.imageLabel} aspect="1 / 1" />
+                <PlaceholderImage src="/images/why-matters.jpg" label={content.matters.imageLabel} aspect="1 / 1" />
               </Reveal>
             </div>
           </div>
@@ -313,6 +315,7 @@ export function EditorialWorld() {
             </div>
             <div className="lg:col-span-5">
               <PlaceholderImage
+                src="/images/campaign.jpg"
                 label={content.campaign.imageLabel}
                 aspect="4 / 5"
               />
@@ -483,8 +486,14 @@ export function EditorialWorld() {
       <footer className="border-t-2 border-ink">
         <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:grid-cols-3 sm:px-8">
           <div>
-            <div className="font-display text-3xl font-black">MÍA</div>
-            <p className="mt-2 text-[0.8rem] text-muted">{brand.legalName}</p>
+            <Image
+              src="/images/logo-red.png"
+              alt="MÍA — Mujer Influencia Actual Foundation"
+              width={64}
+              height={64}
+              className="h-16 w-16 rounded-[3px] shadow-luxe"
+            />
+            <p className="mt-3 text-[0.8rem] text-muted">{brand.legalName}</p>
             <p className="text-[0.8rem] text-muted">{tr(brand.jurisdiction)}</p>
           </div>
           <div className="text-[0.8rem] text-muted">
