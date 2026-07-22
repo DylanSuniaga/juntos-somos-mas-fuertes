@@ -3,120 +3,22 @@
 @tailwind utilities;
 
 /* =========================================================================
-   PER-WORLD TOKEN CONTRACT
-   Each "world" is a separate route with its OWN layout, type, and UI. The
-   palette + fonts + corner-feel for a world come from a [data-theme] block
-   set on that route's wrapper (WorldShell). Semantic Tailwind utilities
-   (bg-ground, text-ink, text-accent, font-display, rounded-token…) read
-   these vars, so a world's components stay palette-agnostic.
+   TOKEN CONTRACT
+   Semantic Tailwind utilities (bg-ground, text-ink, text-accent,
+   font-display, font-mono, rounded-token…) read these vars, so components
+   stay palette-agnostic. Change a color here, not in a component.
+
+   This used to be five [data-theme] blocks — one per design "world". The
+   foundation picked the Signature design (2026-07-22) and the other four
+   were removed, so the surviving palette now lives directly on :root.
    ========================================================================= */
 
+/* ---- MÍA Signature · Brand manual (Didone serif on paper, red rules) ----
+   Real brand kit: red #dc0708 + off-white #f2f2f2, brown #593622 secondary.
+   Source of truth: "LANDING PAGE MIA FOUNDATION/MIA Foundation marca .pdf" */
 :root {
   color-scheme: light;
-}
 
-/* =========================================================================
-   MÍA brand palette — one brand, four expressions.
-   Shared thread on every world: --accent = red #dc0708, ground = off-white,
-   --surface = #fff. Each world then leans into a different brand SECONDARY
-   (brown / black / clay+lavender / gray) so the four stay distinct.
-   Fonts + --radius are per-world differentiators — untouched by the reskin.
-   ========================================================================= */
-
-/* ---- Editorial world · Red ink press (brown + clay on paper) ---- */
-:root,
-[data-theme="gold"] {
-  --ground: #f2f2f2;
-  --surface: #ffffff;
-  --surface-2: #ece9e3;
-  --ink: #23150e;
-  --muted: #6d5a4c;
-  --line: #d8cfc4;
-  --accent: #dc0708;
-  --accent-soft: #f04446;
-  --accent-deep: #a80506;
-  --accent-2: #593622;
-  --gold: #d99f7e;
-  --glow: rgba(220, 7, 8, 0.16);
-  --shadow: rgba(35, 21, 14, 0.16);
-  --radius: 3px;
-  --radius-lg: 6px;
-  --font-display: var(--font-fraunces);
-  --font-body: var(--font-inter);
-  --font-mono: var(--font-jetbrains);
-}
-
-/* ---- Poster world · Activist red & black (clay/gray pops) ----
-   NOTE: --accent-2 and --gold are used as LIGHT block backgrounds with dark
-   text-ink on top (marquee, campaign bg, stickers, buttons) AND as bright text
-   on black — both must stay light. Black lives in --ink/--line, not here. */
-[data-theme="violet"] {
-  --ground: #f2f2f2;
-  --surface: #ffffff;
-  --surface-2: #e7e5e2;
-  --ink: #111111;
-  --muted: #4a4a4a;
-  --line: #111111;
-  --accent: #dc0708;
-  --accent-soft: #ff3b3c;
-  --accent-deep: #b00506;
-  --accent-2: #d99f7e;
-  --gold: #bfbebd;
-  --glow: rgba(220, 7, 8, 0.35);
-  --shadow: rgba(17, 17, 17, 0.28);
-  --radius: 0px;
-  --radius-lg: 0px;
-  --font-display: var(--font-anton);
-  --font-body: var(--font-space);
-  --font-mono: var(--font-space);
-}
-
-/* ---- Organic world · Soft & human (clay + lavender pastels) ---- */
-[data-theme="rose"] {
-  --ground: #f7f1ec;
-  --surface: #ffffff;
-  --surface-2: #f0e6de;
-  --ink: #4a2f22;
-  --muted: #8a6f60;
-  --line: #ecdccf;
-  --accent: #dc0708;
-  --accent-soft: #d99f7e;
-  --accent-deep: #b00506;
-  --accent-2: #bfbebd;
-  --gold: #d99f7e;
-  --glow: rgba(217, 159, 126, 0.30);
-  --shadow: rgba(74, 47, 34, 0.14);
-  --radius: 20px;
-  --radius-lg: 34px;
-  --font-display: var(--font-poppins);
-  --font-body: var(--font-nunito);
-  --font-mono: var(--font-nunito);
-}
-
-/* ---- Dashboard world · Data app-shell (gray UI + red KPIs) ---- */
-[data-theme="emerald"] {
-  --ground: #f1f1f3;
-  --surface: #ffffff;
-  --surface-2: #e6e6ea;
-  --ink: #1a1a1e;
-  --muted: #6b6b73;
-  --line: #d9d9d9;
-  --accent: #dc0708;
-  --accent-soft: #f04446;
-  --accent-deep: #a80506;
-  --accent-2: #bfbebd;
-  --gold: #d99f7e;
-  --glow: rgba(220, 7, 8, 0.20);
-  --shadow: rgba(20, 20, 25, 0.14);
-  --radius: 8px;
-  --radius-lg: 14px;
-  --font-display: var(--font-space);
-  --font-body: var(--font-inter);
-  --font-mono: var(--font-jetbrains);
-}
-
-/* ---- Dossier world · Brand manual (Didone serif on paper, red rules) ---- */
-[data-theme="paper"] {
   --ground: #f2f2f2;
   --surface: #ffffff;
   --surface-2: #e8e8e6;

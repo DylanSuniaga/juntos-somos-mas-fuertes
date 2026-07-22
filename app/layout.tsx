@@ -1,86 +1,38 @@
 import type { Metadata, Viewport } from "next";
-import {
-  Fraunces,
-  Inter,
-  Anton,
-  Space_Grotesk,
-  Poppins,
-  Nunito,
-  JetBrains_Mono,
-  Playfair_Display,
-} from "next/font/google";
+import { Poppins, JetBrains_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import { CinematicProvider } from "@/components/providers/CinematicProvider";
 import { SmoothScroll } from "@/components/shared/SmoothScroll";
+import { LanguageToggle } from "@/components/shared/LanguageToggle";
 
-/* Editorial world (default) — preloaded. */
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "900"],
-  style: ["normal", "italic"],
-  variable: "--font-fraunces",
-  display: "swap",
-});
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
+/* The three faces the Signature design uses — all preloaded, since there is
+   only one design left. (This was eight fonts across five worlds until the
+   foundation picked this one on 2026-07-22.) */
 
-/* Other worlds — loaded when their route is visited. */
-const anton = Anton({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-anton",
-  display: "swap",
-  preload: false,
-});
-const space = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space",
-  display: "swap",
-  preload: false,
-});
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins",
-  display: "swap",
-  preload: false,
-});
-const nunito = Nunito({
-  subsets: ["latin"],
-  variable: "--font-nunito",
-  display: "swap",
-  preload: false,
-});
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-  display: "swap",
-  preload: false,
-});
-/* Dossier world — Didone serif for the brand-manual look. */
+/** Didone serif headings — the brand-manual look. */
 const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
   variable: "--font-playfair",
   display: "swap",
-  preload: false,
+});
+/** Body copy. */
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-poppins",
+  display: "swap",
+});
+/** ALL-CAPS letter-spaced labels and section numbers. */
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains",
+  display: "swap",
 });
 
-const fontVars = [
-  fraunces.variable,
-  inter.variable,
-  anton.variable,
-  space.variable,
-  poppins.variable,
-  nunito.variable,
-  jetbrains.variable,
-  playfair.variable,
-].join(" ");
+const fontVars = [playfair.variable, poppins.variable, jetbrains.variable].join(" ");
 
 const SITE = "https://mia-foundation.org";
 
@@ -115,6 +67,7 @@ export default function RootLayout({
         <LanguageProvider>
           <CinematicProvider>
             <SmoothScroll />
+            <LanguageToggle />
             {children}
           </CinematicProvider>
         </LanguageProvider>

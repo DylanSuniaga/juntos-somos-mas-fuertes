@@ -4,17 +4,6 @@ Landing page for **MÍA — Mujer Influencia Actual Foundation, Inc.**, a Florid
 
 Bilingual **ES/EN**. Built with **Next.js 16 · React 19 · TypeScript · Tailwind CSS · Framer Motion**.
 
-## Four worlds, one purpose
-
-The same content is presented as **four completely different designs** — each with its own layout, typography, and UI. A floating picker (top-right) navigates between them, so the foundation can experience each direction and choose.
-
-| World | Route | Design language |
-|---|---|---|
-| **Editorial** (default) | `/` | Magazine: masthead, print grid, drop caps, pull quotes, ruled dividers |
-| **Manifiesto** | `/manifiesto` | Activist poster: giant type, color blocks, marquees, sticker badges |
-| **Humano** | `/organico` | Organic: pastel gradients, blob shapes, floating pill-cards, soft everything |
-| **Panel** | `/panel` | Impact dashboard: sidebar, KPI tiles, progress meters, tabbed programs |
-
 ## Develop
 
 ```bash
@@ -32,12 +21,14 @@ Deploys to **Vercel** with zero configuration (Next.js App Router).
 
 ## Structure
 
-- `app/` — one route per world; `app/layout.tsx` loads fonts + providers.
-- `components/worlds/<world>/` — each world's bespoke layout.
-- `components/shared/` — `WorldShell` (theme wrapper) + `WorldPicker` (navigation).
-- `lib/content.ts` — all copy as bilingual `{ es, en }` leaves (single source of truth).
-- `lib/team.ts`, `lib/worlds.ts` — team roster and world registry.
+- `app/page.tsx` — the single page; `app/layout.tsx` loads fonts, providers, and the ES/EN toggle.
+- `app/globals.css` — the design tokens every component reads (`--accent`, `--ink`, `--font-display`…).
+- `components/worlds/dossier/DossierWorld.tsx` — the whole page layout, section by section.
+- `lib/content.ts` — all copy as bilingual `{ es, en }` leaves, plus `links` (CTA destinations). Single source of truth.
+- `lib/team.ts` — founders and board.
 - `public/images/` — image slots (see the README there to add photos).
+
+> The site was originally built as **five** parallel designs on separate routes so the foundation could compare directions. They chose the Signature design on 2026-07-22; the other four were removed. They're in the git history if you ever need them back.
 
 See `CLAUDE.md` for the full architecture notes.
 

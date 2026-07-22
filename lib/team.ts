@@ -9,11 +9,9 @@ export type Person = {
 };
 
 /**
- * Names, roles, and countries verbatim from the foundation brief.
- *
- * `leadership` is the canonical list and the display order the foundation
- * asked for (Karen · Claudia · Francilenny on top, Annelys · Ninoska below).
- * `foundingTeam` / `board` are the split views the non-default worlds render.
+ * Names, roles, and countries verbatim from the foundation brief, in the
+ * display order the foundation asked for: Karen · Claudia · Francilenny on
+ * the top row, Annelys · Ninoska below.
  */
 
 const karen: Person = {
@@ -49,14 +47,4 @@ const ninoska: Person = {
   photo: "/images/team/ninoska.jpg",
 };
 
-/** Single grid, in the order the foundation specified. */
 export const leadership: Person[] = [karen, claudia, francilenny, annelys, ninoska];
-
-export const foundingTeam: Person[] = [karen, claudia, francilenny];
-
-export const board: Person[] = [
-  { ...karen, role: { es: "Presidenta", en: "President" } },
-  { ...francilenny, role: { es: "Vicepresidenta", en: "Vice President" } },
-  annelys,
-  ninoska,
-];

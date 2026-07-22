@@ -344,26 +344,6 @@ export const content = {
     },
   },
 
-  numbers: {
-    chapter: { es: "Nuestra Comunidad en Números", en: "Our Community in Numbers" },
-    stats: [
-      {
-        value: 5000,
-        prefix: "+",
-        label: { es: "Miembros de la comunidad", en: "Community members" },
-      },
-      {
-        value: 24,
-        prefix: "",
-        label: { es: "Países conectados", en: "Countries connected" },
-      },
-    ],
-    quote: {
-      es: "Desde 2012 construimos relaciones, impulsamos líderes y creamos oportunidades para servir a nuestras comunidades.",
-      en: "Since 2012 we've built relationships, empowered leaders, and created opportunities to serve our communities.",
-    },
-  },
-
   /** 07 · NUESTRA TRAYECTORIA — rendered as a horizontal timeline. */
   timeline: {
     chapter: { es: "Nuestra Trayectoria", en: "Our Journey" },
@@ -450,44 +430,6 @@ export const content = {
         en: "A commitment to accountability that strengthens the trust of our allies, sponsors, and community.",
       },
     ] as Bi[],
-  },
-
-  collaborate: {
-    chapter: { es: "¿Cómo puedes colaborar?", en: "How can you help?" },
-    lede: {
-      es: "Hay muchas formas de formar parte de la misión de MÍA.",
-      en: "There are many ways to be part of MÍA's mission.",
-    },
-    items: [
-      {
-        title: { es: "Donar", en: "Donate" },
-        body: {
-          es: "Apoya directamente nuestros programas.",
-          en: "Support our programs directly.",
-        },
-      },
-      {
-        title: { es: "Convertirte en Sponsor", en: "Become a Sponsor" },
-        body: {
-          es: "Impulsa nuestros eventos y campañas.",
-          en: "Power our events and campaigns.",
-        },
-      },
-      {
-        title: { es: "Ser Aliado", en: "Become an Ally" },
-        body: {
-          es: "Organizaciones, empresas y líderes comunitarios son bienvenidos.",
-          en: "Organizations, companies, and community leaders are welcome.",
-        },
-      },
-      {
-        title: { es: "Grants & Funding", en: "Grants & Funding" },
-        body: {
-          es: "Información para fundaciones y organismos financiadores.",
-          en: "Information for foundations and funding bodies.",
-        },
-      },
-    ],
   },
 
   /** Volunteer call — sits after the closing CTA and points at the Google Form. */
