@@ -132,7 +132,7 @@ export function OrganicWorld() {
               key={i}
               className="rounded-full bg-white px-4 py-2 text-xs font-semibold text-muted shadow-[0_10px_24px_-14px_var(--shadow)]"
             >
-              {tr(t)}
+              <span className="text-accent-deep">{tr(t.value)}</span> · {tr(t.label)}
             </span>
           ))}
         </div>
@@ -466,7 +466,6 @@ export function OrganicWorld() {
           <p className="text-sm text-muted">
             {brand.email} · Instagram · Facebook · LinkedIn
           </p>
-          <p className="text-xs text-muted/70">{tr(content.footer.placeholderNote)}</p>
           <p className="font-display text-sm font-semibold italic text-accent-deep">
             {brand.hashtag}
           </p>

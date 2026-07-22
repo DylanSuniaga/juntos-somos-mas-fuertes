@@ -2,7 +2,7 @@
 
 Landing page for **MÍA — Mujer Influencia Actual Foundation, Inc.** (a Florida nonprofit, 501(c)(3) pending). Audience: donors, sponsors, allies, grant/funding orgs. Bilingual **ES/EN**. Portfolio-grade volunteer work. Stack: **Next.js 16 (App Router) · React 19 · TypeScript · Tailwind 3.4 · framer-motion 11 · lenis**. Deploys to Vercel.
 
-The content brief is `LANDING PAGE FOUNDATION.md` (Spanish) — the source spec for section copy.
+The content brief is `LANDING PAGE FOUNDATION.md` (Spanish) — the original spec for section copy. **Superseded in part by the foundation's corrections pass (2026-07-22)** — see "Corrections pass" below; when the two disagree, the corrections win.
 
 ## The core idea: five "worlds"
 
@@ -43,16 +43,33 @@ Each route: `app/<route>/page.tsx` renders `<WorldShell world="…"><XWorld/></W
 ## Content, i18n & shared bits
 
 - **`lib/content.ts`** — every string as bilingual `{ es, en }` leaves. Resolve with `tr()` from `LanguageProvider` (`const { tr } = useLang(); tr(content.hero.title)`). Worlds never hardcode copy.
-- **`lib/team.ts`** — founders + board (names/roles/countries from the brief).
+- **`lib/team.ts`** — five people defined once. `leadership` is the canonical single grid the Signature world renders (Karen · Claudia · Francilenny · Annelys · Ninoska, that order); `foundingTeam` / `board` are the split views the other four worlds still use.
+- **`links` in `lib/content.ts`** — the one place CTA destinations live. See CTAs below.
 - Shared primitives: `components/primitives/{Reveal, KineticText, CountUp, PlaceholderImage}.tsx`. `components/providers/{LanguageProvider, CinematicProvider}.tsx`.
 
 ## Images
 
-Real assets are wired (2026-07-16): brand logos (`public/images/logo-red.png`, `logo-black.png`) and photos from the Drive kit — board portraits in `public/images/team/` (set via `photo` in `lib/team.ts`) plus `hero` / `hero-wide` / `why-mia` / `why-matters` / `campaign` / `closing`. Source files live in `LANDING PAGE MIA FOUNDATION/`. `PlaceholderImage` still renders a labeled placeholder wherever no `src` is passed; swap/add by dropping a file in `public/images/` and passing `src`. Slot map in `public/images/README.md`. **Open items:** Claudia Lozano has no portrait (initials fallback); the relief photos are Nigeria / "MÍA GOODHEART" while the campaign copy references the Venezuela earthquake — a content mismatch to resolve with the foundation.
+Real assets are wired: brand logos (`public/images/logo-red.png`, `logo-black.png`) and photos from the Drive kit — portraits in `public/images/team/` (set via `photo` in `lib/team.ts`) plus `hero` / `hero-wide` / `why-mia` / `why-matters` / `campaign-1..3`. Source files live in `LANDING PAGE MIA FOUNDATION/`. `PlaceholderImage` still renders a labeled placeholder wherever no `src` is passed; swap/add by dropping a file in `public/images/` and passing `src`. Slot map + re-export command in `public/images/README.md`.
+
+> **The Nigeria / "MÍA GOODHEART" photos are gone (2026-07-22)** — the foundation found them too harsh and supplied replacements. Don't reintroduce them. The campaign triptych is AI-generated *on purpose* (copyright safety on relief imagery).
 
 ## CTAs
 
-Donate/Ally buttons are **smart placeholders** → `#colaborar` (in-world anchor). Change the `href` on the CTA calls in each `XWorld.tsx` when a real donation URL exists. No payment processor wired.
+All CTA destinations resolve from **`links` in `lib/content.ts`** — never hardcode an `href` in a world.
+- `links.gala` — every "Sé parte de este legado" / "Conviértete en aliado" button. Dubraska's Gala sales landing isn't live yet, so this is a **pre-filled `mailto:`** (the foundation chose email over a PDF so they can actually talk to the donor). **Set `GALA_LANDING_URL` at the top of `lib/content.ts` when the landing ships — that one line switches all of them, and `links.galaIsLive` flips the buttons to `target="_blank"`.**
+- `links.volunteer` — the foundation's Google Form. Live.
+- No payment processor wired; there is no "Donar" button on the Signature world any more (the foundation collapsed it into the single gala CTA).
+- The four non-default worlds still point their CTAs at their own `#colaborar` section — they keep the "¿Cómo puedes colaborar?" block the Signature world dropped.
+
+## Corrections pass (2026-07-22)
+
+The foundation returned an annotated `CORRECCIONES.md` (screenshots + replacement copy) plus voice notes. Applied to `lib/content.ts` + the Signature world:
+- **History starts in 2012, not 2020** — 14 years of trajectory, not 6. This changed the hero trust bar, section 02, the timeline, and the `numbers` quote. If you see "2020" anywhere describing MÍA's origin, it's stale.
+- Section 02 is now **Nuestra Historia**; section 07 is **Nuestra Trayectoria** (a horizontal 5-node timeline: 2012 · 2015 · 2019 · 2023–2025 · 2026).
+- **Two sections were deleted** from the Signature world: "Comunidad en números" (duplicated the trust bar) and "¿Cómo puedes colaborar?". Their content keys (`content.numbers`, `content.collaborate`) are **intentionally kept** — the other four worlds still render them.
+- A **Voluntariado** section was added after the closing CTA.
+- `content.why.video` holds copy for a founder-story video the foundation hasn't filmed. `embedUrl` is `null` → renders an inert placeholder plate. Set it to swap in the embed.
+- Contact is confirmed: `info@mujerinfluenciaactualfoundation.org`, Instagram + LinkedIn linked. **Facebook is deliberately plain text, not a link** — the foundation has no page yet. `brand.phone` is `null` pending Karen's answer; set it to a string and the footer row appears.
 
 ## Deploy (Vercel) + gotchas
 

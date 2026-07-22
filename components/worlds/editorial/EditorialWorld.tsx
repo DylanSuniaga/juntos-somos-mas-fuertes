@@ -145,7 +145,7 @@ export function EditorialWorld() {
           {content.hero.trust.map((t, i) => (
             <span key={i} className="flex items-center gap-2">
               {i > 0 && <span className="text-accent-deep">/</span>}
-              {tr(t)}
+              {tr(t.value)} — {tr(t.label)}
             </span>
           ))}
         </div>
@@ -170,7 +170,7 @@ export function EditorialWorld() {
               </div>
               <blockquote className="my-8 border-y-2 border-ink py-6 font-display text-2xl italic leading-snug sm:text-3xl">
                 <span className="mr-1 text-accent">“</span>
-                {tr(content.why.quote)}
+                {tr(content.why.video.body)}
               </blockquote>
             </div>
           </div>
@@ -502,9 +502,6 @@ export function EditorialWorld() {
             </p>
             <p>{brand.email}</p>
             <p>Instagram · Facebook · LinkedIn</p>
-            <p className="mt-2 text-[0.7rem] text-muted/70">
-              {tr(content.footer.placeholderNote)}
-            </p>
           </div>
           <div className="text-[0.8rem] text-muted sm:text-right">
             <p>{tr(content.footer.privacy)}</p>

@@ -404,9 +404,6 @@ export function DashboardWorld() {
             <span>{brand.email} · Instagram · Facebook · LinkedIn</span>
             <span>© 2026 · {tr(content.footer.rights)}</span>
           </div>
-          <p className="mt-1 font-mono text-[0.64rem] text-muted/60">
-            {tr(content.footer.placeholderNote)}
-          </p>
         </footer>
       </main>
     </div>

@@ -100,7 +100,9 @@ function PosterBtn({
 
 export function PosterWorld() {
   const { tr } = useLang();
-  const trust = content.hero.trust.map((t) => tr(t).toUpperCase());
+  const trust = content.hero.trust.map((t) =>
+    `${tr(t.value)} · ${tr(t.label)}`.toUpperCase(),
+  );
 
   return (
     <div className="font-body uppercase-none text-ink">
@@ -398,9 +400,6 @@ export function PosterWorld() {
             </p>
             <p className="mt-2">{brand.email}</p>
             <p>Instagram · Facebook · LinkedIn</p>
-            <p className="mt-2 text-xs text-surface/50">
-              {tr(content.footer.placeholderNote)}
-            </p>
           </div>
         </div>
         <p className="mx-auto mt-8 max-w-6xl text-xs uppercase tracking-widest text-surface/50">

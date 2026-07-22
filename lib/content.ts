@@ -4,23 +4,68 @@ import type { Bi } from "@/components/providers/LanguageProvider";
  * Single source of truth for every string on the page. Spanish is authored
  * verbatim from the foundation brief; English is a working translation to
  * refine. Components resolve leaves with `tr()` from the LanguageProvider.
+ *
+ * Copy revision 2026-07-22 — folded in the foundation's CORRECCIONES pass
+ * (history now starts in 2012, not 2020; gala CTAs unified; volunteer section
+ * added; contact details confirmed).
  */
 
 export const brand = {
   legalName: "Mujer Influencia Actual Foundation, Inc.",
   short: "MÍA",
+  /** Header lockup next to the mark — the foundation asked for the full name. */
+  wordmark: "MUJER INFLUENCIA ACTUAL FOUNDATION",
   hashtag: "#JuntosSomosMásFuertes",
   jurisdiction: {
     es: "Florida Nonprofit Corporation",
     en: "Florida Nonprofit Corporation",
   } as Bi,
-  // Placeholders — swap when the foundation confirms.
-  email: "info@miafoundation.org",
+  email: "info@mujerinfluenciaactualfoundation.org",
+  /**
+   * Pending — Karen to confirm which number to publish. Set it to a string
+   * (e.g. "+1 305 555 0000") and the footer contact row renders automatically.
+   */
+  phone: null as string | null,
+  /** `null` = the foundation has no page yet → rendered as plain text, no link. */
   socials: {
-    instagram: "#",
-    facebook: "#",
-    linkedin: "#",
+    instagram: "https://www.instagram.com/miainfluencia/",
+    linkedin: "https://www.linkedin.com/company/mia-mujer-influencia-actual/",
+    facebook: null as string | null,
   },
+};
+
+/**
+ * Dubraska's Gala sales landing page. It isn't live yet, so every gala CTA
+ * ("Sé parte de este legado" / "Conviértete en aliado") opens a pre-filled
+ * email instead — the foundation preferred a real conversation over handing
+ * out a PDF with no way back. Set this to the URL when it ships and all five
+ * CTAs follow it; no other edit needed.
+ */
+const GALA_LANDING_URL: string | null = null;
+
+const galaMailto =
+  `mailto:${brand.email}` +
+  `?subject=${encodeURIComponent("Gala de Influencia Miami 2026 — quiero ser parte")}` +
+  `&body=${encodeURIComponent(
+    [
+      "Hola equipo MÍA,",
+      "",
+      "Me gustaría recibir información sobre cómo apoyar la Gala de Influencia Miami 2026.",
+      "",
+      "Nombre:",
+      "Empresa / organización:",
+      "Teléfono:",
+      "",
+      "Gracias.",
+    ].join("\n"),
+  )}`;
+
+export const links = {
+  /** Every "gala" CTA on every world points here. */
+  gala: GALA_LANDING_URL ?? galaMailto,
+  galaIsLive: GALA_LANDING_URL !== null,
+  volunteer:
+    "https://docs.google.com/forms/d/e/1FAIpQLSdnWbqsHkAq1WAqDshYuHDV0PSCoc2-YW6Y-LJxYXXYSPaSIQ/viewform",
 };
 
 export const content = {
@@ -31,8 +76,8 @@ export const content = {
       en: "The influence that transforms lives.",
     },
     subtitle: {
-      es: "Construimos una comunidad global que inspira liderazgo, crea oportunidades y transforma influencia en legado.",
-      en: "We build a global community that inspires leadership, creates opportunities, and turns influence into legacy.",
+      es: "Somos una organización sin fines de lucro que convierte el liderazgo y la educación en acciones que fortalecen a las personas, las comunidades y las nuevas generaciones.",
+      en: "We are a nonprofit that turns leadership and education into action — strengthening people, communities, and the generations to come.",
     },
     body: {
       es: "Empoderamos a mujeres, hombres, jóvenes y comunidades en situación de vulnerabilidad mediante programas de educación, liderazgo y acción humanitaria.",
@@ -41,47 +86,100 @@ export const content = {
     donate: { es: "Donar Ahora", en: "Donate Now" },
     ally: { es: "Conviértete en Aliado", en: "Become an Ally" },
     imageLabel: {
-      es: "HERO — Fotografía horizontal de gran impacto. Personas reales de la comunidad MÍA. Liderazgo, unión, esperanza, diversidad y propósito.",
-      en: "HERO — High-impact horizontal photo. Real people from the MÍA community. Leadership, unity, hope, diversity, purpose.",
+      es: "Taller infantil, Canadá 2015 — programas educativos de la comunidad MÍA.",
+      en: "Children's workshop, Canada 2015 — educational programs from the MÍA community.",
     },
+    /** Trust bar: a figure over a short qualifier. */
     trust: [
-      { es: "Desde 2020", en: "Since 2020" },
-      { es: "+5,000 miembros de la comunidad", en: "+5,000 community members" },
-      { es: "Presencia en 24 países", en: "Present in 24 countries" },
       {
-        es: "Sin fines de lucro registrada en Florida",
-        en: "Nonprofit registered in Florida",
+        value: { es: "Desde 2012", en: "Since 2012" },
+        label: { es: "Construyendo comunidad", en: "Building community" },
       },
-    ] as Bi[],
+      {
+        value: { es: "23+", en: "23+" },
+        label: { es: "Eventos con propósito", en: "Events with purpose" },
+      },
+      {
+        value: { es: "24 países", en: "24 countries" },
+        label: { es: "Presencia internacional", en: "International presence" },
+      },
+      {
+        value: { es: "5,000+", en: "5,000+" },
+        label: { es: "Miembros de la comunidad", en: "Community members" },
+      },
+    ],
   },
 
+  /** 01 · IDENTIDAD — what the name, the wing, and the red stand for. */
+  essence: {
+    chapter: { es: "Identidad", en: "Identity" },
+    title: { es: "Nuestra Esencia", en: "Our Essence" },
+    items: [
+      {
+        lead: { es: "El nombre", en: "The name" },
+        body: {
+          es: "“MÍA” es la abreviatura de Mujer Influencia Actual. Representa una comunidad que inspira liderazgo, promueve la educación y crea oportunidades para fortalecer a las personas y construir comunidades más fuertes, sin distinción de género.",
+          en: "“MÍA” stands for Mujer Influencia Actual. It represents a community that inspires leadership, promotes education, and creates opportunities to strengthen people and build stronger communities — without distinction of gender.",
+        },
+      },
+      {
+        lead: { es: "El ala", en: "The wing" },
+        body: {
+          es: "Representa elevación, libertad y esperanza. Simboliza nuestra convicción de que cada persona puede elevarse, romper límites y alcanzar su máximo potencial.",
+          en: "It represents elevation, freedom, and hope. It symbolizes our conviction that every person can rise, break through limits, and reach their full potential.",
+        },
+      },
+      {
+        lead: { es: "El color rojo", en: "The color red" },
+        body: {
+          es: "El rojo representa la pasión por servir, la valentía para liderar y el compromiso de actuar con propósito. Es el color que inspira cada acción que emprendemos para construir un futuro con mayores oportunidades.",
+          en: "Red represents the passion to serve, the courage to lead, and the commitment to act with purpose. It is the color behind every action we take to build a future with greater opportunity.",
+        },
+      },
+    ],
+  },
+
+  /** 02 · NUESTRA HISTORIA */
   why: {
-    chapter: { es: "¿Por qué MÍA?", en: "Why MÍA?" },
+    chapter: { es: "Nuestra Historia", en: "Our Story" },
     imageLabel: {
-      es: "Karen junto a miembros de la comunidad MÍA.",
-      en: "Karen with members of the MÍA community.",
+      es: "Karen Gisella Mairena, fundadora y presidenta de MÍA.",
+      en: "Karen Gisella Mairena, founder and president of MÍA.",
     },
     title: {
-      es: "Nacemos de una comunidad, una trayectoria y un propósito.",
-      en: "Born from a community, a journey, and a purpose.",
+      es: "Nacemos de una historia, una comunidad y una trayectoria con propósito.",
+      en: "Born from a story, a community, and a journey with purpose.",
     },
     paragraphs: [
       {
-        es: "Desde 2020, MÍA ha construido una comunidad internacional que conecta a líderes, empresarios, emprendedores y profesionales comprometidos con el liderazgo, la colaboración y el propósito.",
-        en: "Since 2020, MÍA has built an international community connecting leaders, business owners, entrepreneurs, and professionals committed to leadership, collaboration, and purpose.",
+        es: "Desde 2012, MÍA ha impulsado iniciativas que han unido a personas, organizaciones y comunidades alrededor del liderazgo, la educación y el servicio. A través de eventos, programas y actividades con propósito, hemos construido una comunidad internacional comprometida con generar oportunidades y fortalecer el desarrollo de las personas.",
+        en: "Since 2012, MÍA has driven initiatives that bring people, organizations, and communities together around leadership, education, and service. Through purposeful events, programs, and activities, we have built an international community committed to creating opportunity and strengthening people's development.",
       },
       {
-        es: "A través de eventos, reconocimientos y alianzas estratégicas, hemos creado una red que inspira crecimiento, fortalece conexiones y genera oportunidades para transformar vidas.",
-        en: "Through events, recognitions, and strategic alliances, we've created a network that inspires growth, strengthens connections, and generates opportunities to transform lives.",
+        es: "Con 23 iniciativas realizadas en distintos países, MÍA ha consolidado una trayectoria basada en la colaboración, el reconocimiento y la creación de espacios que inspiran, conectan y fortalecen a las comunidades.",
+        en: "With 23 initiatives carried out across different countries, MÍA has built a track record grounded in collaboration, recognition, and the creation of spaces that inspire, connect, and strengthen communities.",
       },
       {
-        es: "Hoy, esa trayectoria evoluciona con la creación de Mujer Influencia Actual Foundation, una organización sin fines de lucro que convierte esa comunidad en programas de educación, liderazgo y acción humanitaria para beneficiar a mujeres, hombres, jóvenes y comunidades en situación de vulnerabilidad.",
-        en: "Today, that journey evolves with the creation of Mujer Influencia Actual Foundation, a nonprofit that turns that community into programs of education, leadership, and humanitarian action to benefit women, men, youth, and vulnerable communities.",
+        es: "En 2026, esa trayectoria evoluciona con la creación de Mujer Influencia Actual Foundation, consolidando una visión de liderazgo inclusivo que promueve la educación y el servicio como pilares para transformar vidas.",
+        en: "In 2026, that journey evolves with the creation of Mujer Influencia Actual Foundation, consolidating a vision of inclusive leadership that champions education and service as the pillars for transforming lives.",
+      },
+      {
+        es: "Hoy, transformamos esa experiencia en programas que generan oportunidades, fortalecen a las personas e impulsan el desarrollo comunitario para construir un mejor futuro para las nuevas generaciones.",
+        en: "Today, we turn that experience into programs that create opportunity, strengthen people, and drive community development to build a better future for the generations to come.",
       },
     ] as Bi[],
-    quote: {
-      es: "No nacemos de una idea. Nacemos de una comunidad, una trayectoria y un propósito que hoy se transforman en acción.",
-      en: "We are not born from an idea. We are born from a community, a journey, and a purpose that today become action.",
+    /**
+     * Invitation to the founder's story video. `embedUrl` stays null until the
+     * foundation films it — the block renders as an inert placeholder plate.
+     */
+    video: {
+      title: { es: "Conoce cómo nació MÍA", en: "See how MÍA began" },
+      body: {
+        es: "Nuestra fundadora comparte la historia que dio origen a este movimiento y el camino que nos ha traído hasta aquí.",
+        en: "Our founder shares the story behind this movement and the road that brought us here.",
+      },
+      pending: { es: "Video próximamente", en: "Video coming soon" },
+      embedUrl: null as string | null,
     },
   },
 
@@ -117,8 +215,8 @@ export const content = {
       en: "Why our work matters",
     },
     imageLabel: {
-      es: "Fotografía documental auténtica que transmite dignidad y esperanza.",
-      en: "Authentic documentary photograph conveying dignity and hope.",
+      es: "Encuentro de liderazgo de la comunidad MÍA.",
+      en: "A MÍA community leadership gathering.",
     },
     title: {
       es: "Toda persona merece la oportunidad de crecer.",
@@ -126,20 +224,20 @@ export const content = {
     },
     paragraphs: [
       {
-        es: "Creemos que todas las personas merecen la oportunidad de aprender, crecer y desarrollar su máximo potencial.",
-        en: "We believe everyone deserves the opportunity to learn, grow, and reach their full potential.",
+        es: "Creemos que el talento está en todas partes, pero las oportunidades no.",
+        en: "We believe talent is everywhere — opportunity is not.",
       },
       {
-        es: "Sin embargo, miles de niños y jóvenes aún enfrentan barreras para acceder a educación y oportunidades que transformen su futuro.",
-        en: "Yet thousands of children and young people still face barriers to the education and opportunities that would transform their future.",
+        es: "Cuando una persona tiene acceso a educación, liderazgo y una comunidad que cree en ella, descubre herramientas para crecer, servir e inspirar a otros.",
+        en: "When someone has access to education, leadership, and a community that believes in them, they find the tools to grow, to serve, and to inspire others.",
       },
       {
-        es: "Muchas mujeres continúan encontrando obstáculos para desarrollar su liderazgo y alcanzar su independencia económica.",
-        en: "Many women still encounter obstacles to developing their leadership and achieving economic independence.",
+        es: "Por eso trabajamos para abrir caminos donde antes había barreras, fortalecer capacidades y acompañar a quienes desean construir un mejor futuro para sí mismos y para sus comunidades.",
+        en: "That is why we work to open paths where there were barriers, to build capability, and to walk alongside those who want to build a better future for themselves and their communities.",
       },
       {
-        es: "Las comunidades más vulnerables necesitan algo más que buenas intenciones: necesitan aliados comprometidos que conviertan la solidaridad en acciones concretas.",
-        en: "The most vulnerable communities need more than good intentions — they need committed allies who turn solidarity into concrete action.",
+        es: "Porque cuando una persona crece, su influencia trasciende y su legado permanece.",
+        en: "Because when a person grows, their influence carries further — and their legacy remains.",
       },
     ] as Bi[],
   },
@@ -147,8 +245,8 @@ export const content = {
   programs: {
     chapter: { es: "Nuestros Programas", en: "Our Programs" },
     title: {
-      es: "Tres pilares que convierten la comunidad en acción.",
-      en: "Three pillars that turn community into action.",
+      es: "Tres pilares, una misma misión.",
+      en: "Three pillars, one mission.",
     },
     lede: {
       es: "A través de tres pilares estratégicos, MÍA transforma la fuerza de su comunidad en acciones concretas.",
@@ -162,8 +260,8 @@ export const content = {
           en: "Leadership & Empowerment",
         },
         body: {
-          es: "Impulsamos el liderazgo, el desarrollo personal, las mentorías, el reconocimiento y las oportunidades de crecimiento.",
-          en: "We drive leadership, personal development, mentorship, recognition, and opportunities for growth.",
+          es: "Impulsamos el desarrollo del liderazgo, la mentoría y el crecimiento personal para que mujeres, hombres y jóvenes fortalezcan sus capacidades, inspiren a otros y se conviertan en agentes de cambio dentro de sus comunidades.",
+          en: "We drive leadership development, mentorship, and personal growth so that women, men, and youth strengthen their capabilities, inspire others, and become agents of change within their communities.",
         },
       },
       {
@@ -173,8 +271,8 @@ export const content = {
           en: "Education & Professional Development",
         },
         body: {
-          es: "Promovemos educación, formación profesional, capacitaciones, mentorías y oportunidades de aprendizaje continuo.",
-          en: "We promote education, professional training, workshops, mentorship, and continuous learning opportunities.",
+          es: "Promovemos el acceso a la educación, la formación y el desarrollo de habilidades que amplían las oportunidades académicas, profesionales y de crecimiento para las nuevas generaciones.",
+          en: "We promote access to education, training, and skills development that widen academic, professional, and growth opportunities for the next generations.",
         },
       },
       {
@@ -184,8 +282,8 @@ export const content = {
           en: "Social Impact & Humanitarian Support",
         },
         body: {
-          es: "Desarrollamos iniciativas humanitarias, programas comunitarios y acciones de apoyo dirigidas a niños, jóvenes y familias en situación de vulnerabilidad.",
-          en: "We develop humanitarian initiatives, community programs, and support actions for children, youth, and families in vulnerable situations.",
+          es: "Fortalecemos comunidades mediante iniciativas de apoyo humanitario, alianzas estratégicas y acciones solidarias que promueven el bienestar, la resiliencia y nuevas oportunidades para quienes más lo necesitan.",
+          en: "We strengthen communities through humanitarian support, strategic alliances, and acts of solidarity that advance well-being, resilience, and new opportunities for those who need them most.",
         },
       },
     ],
@@ -195,34 +293,54 @@ export const content = {
     chapter: { es: "Campaña Actual", en: "Current Campaign" },
     kicker: { es: "La Causa que Nos Une", en: "The Cause That Unites Us" },
     title: {
-      es: "Porque toda vida merece una nueva oportunidad.",
-      en: "Because every life deserves a new opportunity.",
+      es: "La influencia también se comparte.",
+      en: "Influence is meant to be shared.",
     },
     imageLabel: {
-      es: "Fotografía real relacionada con la Gala de Influencia Miami 2026.",
-      en: "Real photo related to the Miami 2026 Influence Gala.",
+      es: "Niños y familias afectados por el doble terremoto en Venezuela.",
+      en: "Children and families affected by the double earthquake in Venezuela.",
     },
     paragraphs: [
       {
-        es: "La Gala de Influencia Miami 2026 representa mucho más que una noche de reconocimientos. Es el encuentro de líderes, empresas y aliados comprometidos con un propósito común: transformar la influencia en acciones que generen esperanza, oportunidades y un legado para las futuras generaciones.",
-        en: "The Miami 2026 Influence Gala represents far more than a night of recognitions. It's the gathering of leaders, companies, and allies committed to a common purpose: turning influence into actions that generate hope, opportunity, and a legacy for future generations.",
+        es: "Desde sus inicios, la Gala de Influencia ha reunido a líderes, profesionales, empresarios, emprendedores y agentes de cambio para reconocer a quienes inspiran con su trayectoria y contribuyen al desarrollo de sus comunidades. A lo largo de los años, cada edición ha apoyado una causa con propósito. En 2026, ese compromiso da un nuevo paso al destinar los fondos recaudados a uno de los programas de Mujer Influencia Actual Foundation, fortaleciendo el alcance y la sostenibilidad de esa labor social.",
+        en: "Since its beginnings, the Influence Gala has brought together leaders, professionals, business owners, entrepreneurs, and changemakers to honor those who inspire through their work and contribute to their communities. Over the years, every edition has supported a cause with purpose. In 2026, that commitment takes a further step: the funds raised go to one of Mujer Influencia Actual Foundation's programs, strengthening the reach and sustainability of that social work.",
       },
       {
-        es: "Los fondos recaudados durante la gala serán destinados, a través del programa de Impacto Social y Apoyo Humanitario de MÍA, a iniciativas dirigidas a niños afectados por el terremoto ocurrido en Venezuela. En alianza con organizaciones que trabajan directamente en las comunidades, impulsaremos acciones orientadas a contribuir a su bienestar, recuperación y acceso a nuevas oportunidades.",
-        en: "Funds raised during the gala will be directed, through MÍA's Social Impact & Humanitarian Support program, to initiatives for children affected by the earthquake in Venezuela. In alliance with organizations working directly in the communities, we will drive actions to support their well-being, recovery, and access to new opportunities.",
-      },
-      {
-        es: "Creemos que la verdadera influencia no se mide por el reconocimiento que recibimos, sino por las vidas que somos capaces de transformar. Cada empresa, aliado y persona que decide unirse a esta causa contribuye a construir un futuro con más esperanza, dignidad y oportunidades para quienes más lo necesitan.",
-        en: "We believe true influence is measured not by the recognition we receive, but by the lives we're able to transform. Every company, ally, and person who joins this cause helps build a future with more hope, dignity, and opportunity for those who need it most.",
+        es: "Los fondos recaudados durante la Gala de Influencia Miami 2026 serán destinados al programa de Impacto Social y Apoyo Humanitario de Mujer Influencia Actual Foundation para apoyar iniciativas dirigidas a niños, niñas y jóvenes en condición de vulnerabilidad afectados por el doble terremoto ocurrido en Venezuela. En alianza con organizaciones que trabajan directamente en las comunidades, contribuiremos a impulsar acciones que fortalezcan su bienestar, acompañen su recuperación y generen nuevas oportunidades para su futuro.",
+        en: "Funds raised during the Miami 2026 Influence Gala will go to Mujer Influencia Actual Foundation's Social Impact & Humanitarian Support program, backing initiatives for vulnerable children and young people affected by the double earthquake in Venezuela. Partnering with organizations working directly in those communities, we will help drive actions that strengthen their well-being, support their recovery, and open new opportunities for their future.",
       },
     ] as Bi[],
+    /** Triptych under the campaign copy. */
+    images: [
+      {
+        src: "/images/campaign-1.jpg",
+        label: {
+          es: "Familias afectadas por el doble terremoto en Venezuela.",
+          en: "Families affected by the double earthquake in Venezuela.",
+        },
+      },
+      {
+        src: "/images/campaign-2.jpg",
+        label: {
+          es: "Ayuda humanitaria — Unidos por Venezuela.",
+          en: "Humanitarian aid — United for Venezuela.",
+        },
+      },
+      {
+        src: "/images/campaign-3.jpg",
+        label: {
+          es: "Acceso a educación para niños, niñas y jóvenes.",
+          en: "Access to education for children and young people.",
+        },
+      },
+    ],
     invite: {
-      es: "Hoy te invitamos a ser parte de este propósito y demostrar que, juntos somos más fuertes.",
-      en: "Today we invite you to be part of this purpose and show that, together we are stronger.",
+      es: "Hoy te invitamos a sumarte a esta causa y demostrar que, juntos, somos más fuertes.",
+      en: "Today we invite you to join this cause and show that, together, we are stronger.",
     },
     button: {
-      es: "Conviértete en un Aliado de Impacto",
-      en: "Become an Impact Ally",
+      es: "Sé parte de este legado.",
+      en: "Be part of this legacy.",
     },
   },
 
@@ -241,51 +359,71 @@ export const content = {
       },
     ],
     quote: {
-      es: "Desde 2020 construimos relaciones, impulsamos líderes y creamos oportunidades para servir a nuestras comunidades.",
-      en: "Since 2020 we've built relationships, empowered leaders, and created opportunities to serve our communities.",
+      es: "Desde 2012 construimos relaciones, impulsamos líderes y creamos oportunidades para servir a nuestras comunidades.",
+      en: "Since 2012 we've built relationships, empowered leaders, and created opportunities to serve our communities.",
     },
   },
 
+  /** 07 · NUESTRA TRAYECTORIA — rendered as a horizontal timeline. */
   timeline: {
-    chapter: { es: "Nuestra Historia", en: "Our Story" },
+    chapter: { es: "Nuestra Trayectoria", en: "Our Journey" },
     title: {
       es: "De una comunidad a un legado.",
       en: "From a community to a legacy.",
     },
     milestones: [
       {
-        year: "2020",
-        text: { es: "Nace la comunidad MÍA.", en: "The MÍA community is born." },
+        year: "2012",
+        label: { es: "Primera iniciativa", en: "First initiative" },
+        text: {
+          es: "Comienza el camino de MÍA con su primera iniciativa comunitaria.",
+          en: "MÍA's road begins with its first community initiative.",
+        },
       },
       {
-        year: "2023",
+        year: "2015",
+        label: { es: "Programas infantiles", en: "Children's programs" },
         text: {
-          es: "Los programas de reconocimiento comienzan su expansión internacional.",
-          en: "The recognition programs begin their international expansion.",
+          es: "Se desarrollan programas educativos y actividades para niños y familias.",
+          en: "Educational programs and activities for children and families take shape.",
+        },
+      },
+      {
+        year: "2019",
+        label: { es: "Espacios de liderazgo", en: "Leadership spaces" },
+        text: {
+          es: "La comunidad continúa creciendo con eventos y espacios de liderazgo.",
+          en: "The community keeps growing through events and leadership spaces.",
+        },
+      },
+      {
+        year: "2023–2025",
+        label: { es: "Comunidad global", en: "Global community" },
+        text: {
+          es: "MÍA expande su presencia internacional con iniciativas en distintos países.",
+          en: "MÍA expands its international presence with initiatives across countries.",
         },
       },
       {
         year: "2026",
+        label: { es: "Nace la Fundación", en: "The Foundation is born" },
         text: {
-          es: "Se crea Mujer Influencia Actual Foundation.",
-          en: "Mujer Influencia Actual Foundation is created.",
-        },
-      },
-      {
-        year: { es: "Hoy", en: "Today" },
-        text: {
-          es: "Impulsamos programas educativos, de liderazgo y acción humanitaria.",
-          en: "We drive educational, leadership, and humanitarian programs.",
+          es: "Nace Mujer Influencia Actual Foundation, consolidando más de una década de trayectoria en liderazgo, educación y servicio.",
+          en: "Mujer Influencia Actual Foundation is born, consolidating over a decade of work in leadership, education, and service.",
         },
       },
     ],
   },
 
   leadership: {
-    chapter: { es: "Fundadoras y Junta Directiva", en: "Founders & Board of Directors" },
+    chapter: { es: "Nuestro Liderazgo", en: "Our Leadership" },
+    title: {
+      es: "Fundadoras y Junta Directiva",
+      en: "Founders & Board of Directors",
+    },
     intro: {
-      es: "MÍA está liderada por un equipo fundador y una Junta Directiva comprometidos con la transparencia, el servicio y el desarrollo de nuestras comunidades.",
-      en: "MÍA is led by a founding team and a Board of Directors committed to transparency, service, and the development of our communities.",
+      es: "Mujer Influencia Actual Foundation está liderada por un equipo fundador y una Junta Directiva comprometidos con la transparencia, el servicio y el fortalecimiento de las comunidades a las que servimos.",
+      en: "Mujer Influencia Actual Foundation is led by a founding team and a Board of Directors committed to transparency, service, and strengthening the communities we serve.",
     },
     foundingLabel: { es: "Equipo Fundador", en: "Founding Team" },
     boardLabel: { es: "Junta Directiva", en: "Board of Directors" },
@@ -300,16 +438,16 @@ export const content = {
     },
     items: [
       {
-        es: "Mujer Influencia Actual Foundation, Inc. — Organización sin fines de lucro registrada en el Estado de Florida.",
-        en: "Mujer Influencia Actual Foundation, Inc. — Nonprofit organization registered in the State of Florida.",
+        es: "Gobernanza responsable a través de una Junta Directiva comprometida con la misión de la Fundación.",
+        en: "Responsible governance through a Board of Directors committed to the Foundation's mission.",
       },
       {
-        es: "Solicitud del estatus 501(c)(3) en proceso.",
-        en: "501(c)(3) status application pending.",
+        es: "Gestión ética y transparente de las donaciones, alianzas y programas que impulsamos.",
+        en: "Ethical, transparent management of the donations, alliances, and programs we drive.",
       },
       {
-        es: "Compromiso con una gestión ética, transparente y responsable de cada donación recibida.",
-        en: "Committed to the ethical, transparent, and responsible management of every donation received.",
+        es: "Compromiso con la rendición de cuentas para fortalecer la confianza de nuestros aliados, patrocinadores y comunidad.",
+        en: "A commitment to accountability that strengthens the trust of our allies, sponsors, and community.",
       },
     ] as Bi[],
   },
@@ -352,6 +490,20 @@ export const content = {
     ],
   },
 
+  /** Volunteer call — sits after the closing CTA and points at the Google Form. */
+  volunteer: {
+    chapter: { es: "Voluntariado", en: "Volunteer" },
+    title: {
+      es: "También puedes generar un cambio.",
+      en: "You can create change too.",
+    },
+    body: {
+      es: "Comparte tu tiempo, tu experiencia y tu talento para fortalecer los programas e iniciativas de Mujer Influencia Actual Foundation.",
+      en: "Share your time, your experience, and your talent to strengthen the programs and initiatives of Mujer Influencia Actual Foundation.",
+    },
+    button: { es: "Quiero ser voluntario", en: "I want to volunteer" },
+  },
+
   closing: {
     imageLabel: {
       es: "La fotografía más emotiva de la página: unión, esperanza y comunidad.",
@@ -361,7 +513,7 @@ export const content = {
       es: "Juntos construimos oportunidades, formamos líderes y dejamos un legado para las futuras generaciones.",
       en: "Together we build opportunities, shape leaders, and leave a legacy for future generations.",
     },
-    button: { es: "Donar Hoy", en: "Donate Today" },
+    button: { es: "Sé parte de este legado.", en: "Be part of this legacy." },
     institutional: {
       es: "Porque las comunidades más fuertes nacen cuando personas, organizaciones y empresas deciden trabajar unidas por un propósito común.",
       en: "Because the strongest communities are born when people, organizations, and companies decide to work together for a common purpose.",
@@ -375,16 +527,13 @@ export const content = {
     },
     contactLabel: { es: "Contacto", en: "Contact" },
     emailLabel: { es: "Correo electrónico", en: "Email" },
+    phoneLabel: { es: "Teléfono", en: "Phone" },
     socialLabel: { es: "Redes sociales", en: "Social media" },
     privacy: { es: "Política de Privacidad", en: "Privacy Policy" },
     terms: { es: "Términos y Condiciones", en: "Terms & Conditions" },
     rights: {
       es: "Todos los derechos reservados.",
       en: "All rights reserved.",
-    },
-    placeholderNote: {
-      es: "Correo y redes sociales por confirmar.",
-      en: "Email and social links to be confirmed.",
     },
   },
 } as const;

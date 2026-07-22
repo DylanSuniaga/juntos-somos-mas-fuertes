@@ -2,11 +2,10 @@
 
 import type { ReactNode } from "react";
 import Image from "next/image";
-import { content, brand } from "@/lib/content";
-import { foundingTeam, board } from "@/lib/team";
+import { content, brand, links } from "@/lib/content";
+import { leadership } from "@/lib/team";
 import { useLang, type Bi } from "@/components/providers/LanguageProvider";
 import { Reveal } from "@/components/primitives/Reveal";
-import { CountUp } from "@/components/primitives/CountUp";
 import { PlaceholderImage } from "@/components/primitives/PlaceholderImage";
 
 /* =========================================================================
@@ -15,6 +14,9 @@ import { PlaceholderImage } from "@/components/primitives/PlaceholderImage";
    by a short red rule, ALL-CAPS mono/sans labels, red circular icon badges,
    two-column text split by a thin red hairline, logo tiles, photo plates with
    a circular MÍA badge, and a real palette strip. Off-white paper throughout.
+
+   Section order is load-bearing — the foundation numbers them 01–09 in the
+   copy deck, and the closing CTA + volunteer call sit after 09 unnumbered.
    ========================================================================= */
 
 /* ---- dossier atoms ---- */
@@ -78,6 +80,7 @@ const Icons = {
   flag: (<><path d="M6 21V4" /><path d="M6 5h11l-2.2 3.5L17 12H6" /></>),
   gem: (<><path d="M6 4h12l3 5-9 11L3 9Z" /><path d="M3 9h18M9 4 7.5 9 12 20l4.5-11L15 4" /></>),
   check: (<path d="m5 12 4.5 4.5L19 7" />),
+  hands: (<><path d="M12 21s-6-3.6-6-8.4A3.1 3.1 0 0 1 12 10a3.1 3.1 0 0 1 6 2.6C18 17.4 12 21 12 21Z" /><path d="M4.5 9 8 5.5M19.5 9 16 5.5" /></>),
 } as const;
 
 /** Photo plate carrying a small circular MÍA badge in the corner. */
@@ -105,17 +108,20 @@ function Plate({
 }
 
 function DossierBtn({
-  href = "#colaborar",
+  href,
   children,
   solid = true,
+  external = false,
 }: {
-  href?: string;
+  href: string;
   children: ReactNode;
   solid?: boolean;
+  external?: boolean;
 }) {
   return (
     <a
       href={href}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className={`inline-flex items-center gap-2 rounded-token px-6 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.16em] transition-colors ${
         solid
           ? "bg-accent text-surface hover:bg-accent-deep"
@@ -133,32 +139,7 @@ function DossierBtn({
 export function DossierWorld() {
   const { tr } = useLang();
 
-  const symbol: { icon: ReactNode; lead: Bi; body: Bi }[] = [
-    {
-      icon: Icons.person,
-      lead: { es: "El nombre", en: "The name" },
-      body: {
-        es: "“MÍA” es la abreviatura de Mujer Influencia Actual. Impulsamos el liderazgo, la educación y el impacto social para transformar la influencia en oportunidades, sin distinción de género.",
-        en: "“MÍA” stands for Mujer Influencia Actual. We drive leadership, education, and social impact to turn influence into opportunity — without distinction of gender.",
-      },
-    },
-    {
-      icon: Icons.wing,
-      lead: { es: "El ala", en: "The wing" },
-      body: {
-        es: "Representa elevación, libertad y esperanza. Simboliza nuestro propósito de acompañar a las personas a elevarse, romper límites y alcanzar su máximo potencial.",
-        en: "Represents elevation, freedom, and hope. It symbolizes our purpose to help people rise, break limits, and reach their full potential.",
-      },
-    },
-    {
-      icon: Icons.heart,
-      lead: { es: "El color rojo", en: "The color red" },
-      body: {
-        es: "Pasión, acción, valentía y compromiso. Es el color de la fuerza interior que nos motiva a transformar vidas y construir un futuro más justo, solidario e inclusivo.",
-        en: "Passion, action, courage, and commitment. The color of the inner strength that moves us to transform lives and build a fairer, more caring future.",
-      },
-    },
-  ];
+  const essenceIcons = [Icons.person, Icons.wing, Icons.heart];
 
   const pillars: { icon: ReactNode; label: Bi; body: Bi }[] = [
     { icon: Icons.target, label: content.mission.visionLabel, body: content.mission.vision },
@@ -172,9 +153,11 @@ export function DossierWorld() {
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
           <div className="flex items-center gap-3">
             <Image src="/images/logo-red.png" alt="MÍA Foundation" width={40} height={40} className="h-10 w-10 rounded-token" priority />
-            <Kicker tone="muted">{tr({ es: "Mujer Influencia Actual", en: "Mujer Influencia Actual" })}</Kicker>
+            <span className="font-mono text-[0.6rem] font-semibold uppercase leading-tight tracking-[0.26em] text-muted sm:text-[0.66rem] sm:tracking-[0.32em]">
+              {brand.wordmark}
+            </span>
           </div>
-          <span className="hidden font-mono text-[0.62rem] uppercase tracking-[0.24em] text-muted sm:block">
+          <span className="hidden font-mono text-[0.62rem] uppercase tracking-[0.24em] text-muted lg:block">
             MÍA · Miami · 2026
           </span>
         </div>
@@ -192,9 +175,10 @@ export function DossierWorld() {
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
               {tr(content.hero.subtitle)}
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <DossierBtn>{tr(content.hero.donate)}</DossierBtn>
-              <DossierBtn solid={false}>{tr(content.hero.ally)}</DossierBtn>
+            <div className="mt-8">
+              <DossierBtn href={links.gala} external={links.galaIsLive}>
+                {tr(content.hero.ally)}
+              </DossierBtn>
             </div>
           </div>
           <Reveal>
@@ -209,25 +193,28 @@ export function DossierWorld() {
         </div>
 
         {/* trust bar */}
-        <div className="mt-14 grid gap-px overflow-hidden rounded-token border border-line bg-line sm:grid-cols-4">
+        <div className="mt-14 grid gap-px overflow-hidden rounded-token border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {content.hero.trust.map((t, i) => (
-            <div key={i} className="bg-ground px-4 py-4 text-center">
-              <span className="font-mono text-[0.72rem] font-medium leading-snug text-ink">{tr(t)}</span>
+            <div key={i} className="bg-ground px-4 py-5 text-center">
+              <div className="font-display text-xl font-black leading-none text-accent">{tr(t.value)}</div>
+              <div className="mt-2 font-mono text-[0.62rem] uppercase leading-snug tracking-[0.16em] text-muted">
+                {tr(t.label)}
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ===== EL SÍMBOLO ===== */}
+      {/* ===== 01 · IDENTIDAD ===== */}
       <section className="border-t border-line bg-surface">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-          <SectionHead index="01" kicker={tr({ es: "Nuestra esencia", en: "Our essence" })}>
-            {tr({ es: "El símbolo", en: "The symbol" })}
+          <SectionHead index="01" kicker={tr(content.essence.chapter)}>
+            {tr(content.essence.title)}
           </SectionHead>
           <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
-            {symbol.map((s, i) => (
+            {content.essence.items.map((s, i) => (
               <Reveal key={i} delay={0.06 * i} className="flex flex-col gap-4">
-                <IconBadge>{s.icon}</IconBadge>
+                <IconBadge>{essenceIcons[i]}</IconBadge>
                 <div>
                   <h3 className="font-display text-xl font-bold text-ink">{tr(s.lead)}</h3>
                   <p className="mt-2 text-[0.92rem] leading-relaxed text-muted">{tr(s.body)}</p>
@@ -238,7 +225,7 @@ export function DossierWorld() {
         </div>
       </section>
 
-      {/* ===== ¿POR QUÉ MÍA? ===== */}
+      {/* ===== 02 · NUESTRA HISTORIA ===== */}
       <section className="border-t border-line">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
           <SectionHead index="02" kicker={tr(content.why.chapter)}>
@@ -247,25 +234,49 @@ export function DossierWorld() {
           <div className="mt-10 grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-14">
             <div className="grid gap-8 sm:grid-cols-2">
               <div className="space-y-4 text-[0.92rem] leading-relaxed text-muted">
-                <p>{tr(content.why.paragraphs[0])}</p>
-                <p>{tr(content.why.paragraphs[1])}</p>
+                {content.why.paragraphs.slice(0, 2).map((p, i) => (
+                  <p key={i}>{tr(p)}</p>
+                ))}
               </div>
               <div className="space-y-4 text-[0.92rem] leading-relaxed text-muted sm:border-l sm:border-accent/30 sm:pl-8">
-                <p>{tr(content.why.paragraphs[2])}</p>
-                <blockquote className="font-display text-lg font-medium italic leading-snug text-ink">
-                  <span className="text-accent">“</span>
-                  {tr(content.why.quote)}
-                </blockquote>
+                {content.why.paragraphs.slice(2).map((p, i) => (
+                  <p key={i}>{tr(p)}</p>
+                ))}
               </div>
             </div>
             <Reveal>
               <Plate src="/images/why-mia.jpg" label={content.why.imageLabel} aspect="4 / 5" />
             </Reveal>
           </div>
+
+          {/* founder's story video — placeholder until the foundation films it */}
+          <Reveal className="mt-12">
+            <div className="grid items-center gap-8 rounded-token border border-line bg-surface p-7 sm:grid-cols-[1fr_auto] sm:p-9">
+              <div>
+                <h3 className="font-display text-2xl font-bold leading-snug text-ink">
+                  {tr(content.why.video.title)}
+                </h3>
+                <span className="mt-3 block h-[2px] w-10 bg-accent" />
+                <p className="mt-4 max-w-xl text-[0.92rem] italic leading-relaxed text-muted">
+                  {tr(content.why.video.body)}
+                </p>
+              </div>
+              <div className="flex items-center gap-4 sm:flex-col sm:items-center">
+                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-accent text-surface shadow-[0_12px_28px_-14px_var(--glow)]">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                    <path d="M8 5.5v13l11-6.5L8 5.5Z" />
+                  </svg>
+                </span>
+                <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted">
+                  {tr(content.why.video.pending)}
+                </span>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* ===== MISIÓN / VISIÓN / VALORES ===== */}
+      {/* ===== 03 · MISIÓN / VISIÓN / VALORES ===== */}
       <section className="border-t border-line bg-surface">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
           <SectionHead index="03" kicker={tr(content.mission.chapter)}>
@@ -303,7 +314,7 @@ export function DossierWorld() {
         </div>
       </section>
 
-      {/* ===== ¿POR QUÉ IMPORTA? ===== */}
+      {/* ===== 04 · ¿POR QUÉ IMPORTA? ===== */}
       <section className="border-t border-line">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
           <SectionHead index="04" kicker={tr(content.matters.chapter)}>
@@ -311,7 +322,7 @@ export function DossierWorld() {
           </SectionHead>
           <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-14">
             <Reveal className="lg:order-2">
-              <Plate src="/images/why-matters.jpg" label={content.matters.imageLabel} aspect="1 / 1" />
+              <Plate src="/images/why-matters.jpg" label={content.matters.imageLabel} aspect="4 / 3" />
             </Reveal>
             <div className="grid gap-8 sm:grid-cols-2 lg:order-1">
               <div className="space-y-4 text-[0.92rem] leading-relaxed text-muted">
@@ -329,10 +340,10 @@ export function DossierWorld() {
         </div>
       </section>
 
-      {/* ===== PROGRAMAS ===== */}
+      {/* ===== 05 · PROGRAMAS ===== */}
       <section className="border-t border-line bg-surface">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-          <SectionHead index="05" kicker={tr(content.programs.lede)}>
+          <SectionHead index="05" kicker={tr(content.programs.chapter)}>
             {tr(content.programs.title)}
           </SectionHead>
           <div className="mt-10 grid gap-px overflow-hidden rounded-token border border-line bg-line md:grid-cols-3">
@@ -348,136 +359,127 @@ export function DossierWorld() {
         </div>
       </section>
 
-      {/* ===== CAMPAÑA ===== */}
+      {/* ===== 06 · LA CAUSA QUE NOS UNE ===== */}
       <section id="campana" className="border-t border-line">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-          <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
-            <div>
-              <SectionHead index="06" kicker={tr(content.campaign.kicker)}>
-                {tr(content.campaign.title)}
-              </SectionHead>
-              <div className="mt-8 grid gap-6 sm:grid-cols-2">
-                <p className="text-[0.92rem] leading-relaxed text-muted">{tr(content.campaign.paragraphs[0])}</p>
-                <p className="text-[0.92rem] leading-relaxed text-muted sm:border-l sm:border-accent/30 sm:pl-6">
-                  {tr(content.campaign.paragraphs[1])}
-                </p>
-              </div>
-              <p className="mt-6 font-display text-xl font-medium italic leading-snug text-ink">
-                {tr(content.campaign.invite)}
-              </p>
-              <div className="mt-8">
-                <DossierBtn>{tr(content.campaign.button)}</DossierBtn>
-              </div>
-            </div>
-            <Reveal>
-              <Plate src="/images/campaign.jpg" label={content.campaign.imageLabel} aspect="4 / 5" />
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== NÚMEROS ===== */}
-      <section className="border-t border-line bg-surface">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-          <SectionHead index="07" kicker={tr(content.numbers.chapter)} center>
-            {tr({ es: "Comunidad en números", en: "Community in numbers" })}
+          <SectionHead index="06" kicker={tr(content.campaign.kicker)}>
+            {tr(content.campaign.title)}
           </SectionHead>
-          <div className="mx-auto mt-10 grid max-w-4xl gap-px overflow-hidden rounded-token border border-line bg-line sm:grid-cols-2">
-            {content.numbers.stats.map((s, i) => (
-              <div key={i} className="bg-ground px-8 py-12 text-center">
-                <div className="font-display text-6xl font-black leading-none text-accent sm:text-7xl">
-                  <CountUp to={s.value} prefix={s.prefix} />
-                </div>
-                <p className="mt-4 font-mono text-[0.68rem] uppercase tracking-[0.22em] text-muted">
-                  {tr(s.label)}
-                </p>
-              </div>
+          <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-12">
+            <p className="text-[0.92rem] leading-relaxed text-muted">{tr(content.campaign.paragraphs[0])}</p>
+            <p className="text-[0.92rem] leading-relaxed text-muted lg:border-l lg:border-accent/30 lg:pl-10">
+              {tr(content.campaign.paragraphs[1])}
+            </p>
+          </div>
+
+          <div className="mt-12 text-center">
+            <p className="mx-auto max-w-2xl font-display text-xl font-medium italic leading-snug text-ink sm:text-2xl">
+              {tr(content.campaign.invite)}
+            </p>
+            <div className="mt-7 flex justify-center">
+              <DossierBtn href={links.gala} external={links.galaIsLive}>
+                {tr(content.campaign.button)}
+              </DossierBtn>
+            </div>
+          </div>
+
+          {/* campaign triptych */}
+          <div className="mt-12 grid gap-5 sm:grid-cols-3">
+            {content.campaign.images.map((img, i) => (
+              <Reveal key={img.src} delay={0.06 * i}>
+                <PlaceholderImage
+                  src={img.src}
+                  label={img.label}
+                  aspect="3 / 4"
+                  sizes="(max-width: 640px) 100vw, 33vw"
+                />
+              </Reveal>
             ))}
           </div>
-          <p className="mx-auto mt-8 max-w-2xl text-center font-display text-lg font-medium italic leading-snug text-ink sm:text-xl">
-            {tr(content.numbers.quote)}
-          </p>
         </div>
       </section>
 
-      {/* ===== HISTORIA ===== */}
-      <section className="border-t border-line">
+      {/* ===== 07 · NUESTRA TRAYECTORIA ===== */}
+      <section className="border-t border-line bg-surface">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-          <SectionHead index="08" kicker={tr(content.timeline.chapter)}>
+          <SectionHead index="07" kicker={tr(content.timeline.chapter)}>
             {tr(content.timeline.title)}
           </SectionHead>
-          <ol className="mt-10 grid gap-px overflow-hidden rounded-token border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">
             {content.timeline.milestones.map((m, i) => (
-              <li key={i} className="bg-ground p-6">
-                <span className="font-mono text-[0.66rem] tracking-[0.2em] text-accent">{`0${i + 1}`}</span>
-                <div className="mt-2 font-display text-3xl font-black text-ink">{tr(m.year)}</div>
-                <span className="mt-3 block h-[2px] w-8 bg-accent" />
+              <Reveal key={m.year} delay={0.06 * i} as="li" className="relative flex flex-col">
+                <div className="font-display text-2xl font-black leading-none text-ink lg:text-[1.6rem]">
+                  {m.year}
+                </div>
+                {/* node + connector rail */}
+                <div className="relative my-5 h-3">
+                  <span
+                    aria-hidden
+                    className={`absolute left-1.5 right-0 top-1/2 hidden h-px -translate-y-1/2 bg-line lg:block ${
+                      i === content.timeline.milestones.length - 1 ? "lg:hidden" : ""
+                    }`}
+                  />
+                  <span className="relative block h-3 w-3 rounded-full bg-accent ring-4 ring-surface" />
+                </div>
+                <div className="font-mono text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-accent">
+                  {tr(m.label)}
+                </div>
                 <p className="mt-3 text-[0.86rem] leading-relaxed text-muted">{tr(m.text)}</p>
-              </li>
+              </Reveal>
             ))}
           </ol>
         </div>
       </section>
 
-      {/* ===== EQUIPO ===== */}
-      <section className="border-t border-line bg-surface">
+      {/* ===== 08 · NUESTRO LIDERAZGO ===== */}
+      <section className="border-t border-line">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-          <SectionHead index="09" kicker={tr(content.leadership.chapter)}>
-            {tr({ es: "Fundadoras y Junta", en: "Founders & Board" })}
+          <SectionHead index="08" kicker={tr(content.leadership.chapter)}>
+            {tr(content.leadership.title)}
           </SectionHead>
           <p className="mt-6 max-w-2xl text-[0.92rem] leading-relaxed text-muted">
             {tr(content.leadership.intro)}
           </p>
-          {[
-            { label: content.leadership.foundingLabel, people: foundingTeam },
-            { label: content.leadership.boardLabel, people: board },
-          ].map((grp, gi) => (
-            <div key={gi} className="mt-10">
-              <div className="mb-6 flex items-center gap-3">
-                <Kicker>{tr(grp.label)}</Kicker>
-                <span className="h-px flex-1 bg-line" />
-              </div>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {grp.people.map((p, i) => {
-                  const initials = p.name.split(" ").map((w) => w[0]).slice(0, 2).join("");
-                  return (
-                    <div key={`${p.name}-${i}`}>
-                      <div className="overflow-hidden rounded-token border border-line bg-ground" style={{ aspectRatio: "1 / 1" }}>
-                        {p.photo ? (
-                          <Image
-                            src={p.photo}
-                            alt={p.name}
-                            width={320}
-                            height={320}
-                            className="h-full w-full object-cover"
-                          />
-                        ) : (
-                          <div className="flex h-full w-full items-center justify-center bg-surface-2 font-display text-3xl font-black text-accent/60">
-                            {initials}
-                          </div>
-                        )}
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {leadership.map((p, i) => {
+              const initials = p.name.split(" ").map((w) => w[0]).slice(0, 2).join("");
+              return (
+                <Reveal key={p.name} delay={0.05 * i}>
+                  <div className="overflow-hidden rounded-token border border-line bg-ground" style={{ aspectRatio: "1 / 1" }}>
+                    {p.photo ? (
+                      <Image
+                        src={p.photo}
+                        alt={p.name}
+                        width={480}
+                        height={480}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-surface-2 font-display text-3xl font-black text-accent/60">
+                        {initials}
                       </div>
-                      <h4 className="mt-3 font-display text-base font-bold leading-tight text-ink">{p.name}</h4>
-                      <span className="mt-1 block h-[2px] w-8 bg-accent" />
-                      <p className="mt-2 font-mono text-[0.64rem] uppercase tracking-[0.14em] text-muted">
-                        {tr(p.role)}
-                        {p.country ? ` · ${tr(p.country)}` : ""}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
+                    )}
+                  </div>
+                  <h4 className="mt-3 font-display text-base font-bold leading-tight text-ink">{p.name}</h4>
+                  <span className="mt-1 block h-[2px] w-8 bg-accent" />
+                  <p className="mt-2 font-mono text-[0.64rem] uppercase tracking-[0.14em] text-muted">
+                    {tr(p.role)}
+                    {p.country ? ` · ${tr(p.country)}` : ""}
+                  </p>
+                </Reveal>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* ===== TRANSPARENCIA ===== */}
-      <section className="border-t border-line">
+      {/* ===== 09 · TRANSPARENCIA ===== */}
+      <section className="border-t border-line bg-surface">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
           <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-14">
             <div>
-              <SectionHead index="10" kicker={tr(content.governance.chapter)}>
+              <SectionHead index="09" kicker={tr(content.governance.chapter)}>
                 {tr(content.governance.title)}
               </SectionHead>
               <div className="mt-6 flex flex-wrap gap-2">
@@ -505,30 +507,8 @@ export function DossierWorld() {
         </div>
       </section>
 
-      {/* ===== COLABORAR ===== */}
-      <section id="colaborar" className="scroll-mt-6 border-t border-line">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-          <SectionHead index="11" kicker={tr(content.collaborate.lede)}>
-            {tr(content.collaborate.chapter)}
-          </SectionHead>
-          <div className="mt-10 grid gap-px overflow-hidden rounded-token border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-            {content.collaborate.items.map((it, i) => (
-              <div key={i} className="bg-ground p-6">
-                <span className="font-mono text-[0.66rem] tracking-[0.2em] text-accent">{`0${i + 1}`}</span>
-                <h3 className="mt-2 font-display text-lg font-bold text-ink">{tr(it.title)}</h3>
-                <span className="mt-3 block h-[2px] w-8 bg-accent" />
-                <p className="mt-3 text-[0.86rem] leading-relaxed text-muted">{tr(it.body)}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8">
-            <DossierBtn>{tr(content.hero.donate)}</DossierBtn>
-          </div>
-        </div>
-      </section>
-
       {/* ===== CIERRE ===== */}
-      <section className="border-t border-line bg-surface">
+      <section id="colaborar" className="scroll-mt-6 border-t border-line">
         <div className="mx-auto max-w-4xl px-5 py-20 text-center sm:px-8 sm:py-24">
           <Kicker>{content.hero.hashtag}</Kicker>
           <blockquote className="mx-auto mt-6 max-w-3xl font-display text-3xl font-black leading-[1.06] tracking-[-0.01em] text-ink sm:text-5xl">
@@ -536,11 +516,37 @@ export function DossierWorld() {
           </blockquote>
           <span className="mx-auto mt-6 block h-[3px] w-16 bg-accent" />
           <div className="mt-9 flex justify-center">
-            <DossierBtn>{tr(content.closing.button)}</DossierBtn>
+            <DossierBtn href={links.gala} external={links.galaIsLive}>
+              {tr(content.closing.button)}
+            </DossierBtn>
           </div>
           <p className="mx-auto mt-10 max-w-2xl text-[0.9rem] leading-relaxed text-muted">
             {tr(content.closing.institutional)}
           </p>
+        </div>
+      </section>
+
+      {/* ===== VOLUNTARIADO ===== */}
+      <section id="voluntariado" className="scroll-mt-6 border-t border-line bg-surface">
+        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+          <div className="grid items-center gap-8 lg:grid-cols-[auto_1fr_auto] lg:gap-12">
+            <IconBadge>{Icons.hands}</IconBadge>
+            <div>
+              <Kicker>{tr(content.volunteer.chapter)}</Kicker>
+              <h2 className="mt-3 font-display text-[1.9rem] font-black leading-[1.05] tracking-[-0.01em] text-ink sm:text-4xl">
+                {tr(content.volunteer.title)}
+              </h2>
+              <span className="mt-4 block h-[3px] w-14 bg-accent" />
+              <p className="mt-5 max-w-2xl text-[0.92rem] leading-relaxed text-muted">
+                {tr(content.volunteer.body)}
+              </p>
+            </div>
+            <div className="lg:justify-self-end">
+              <DossierBtn href={links.volunteer} solid={false} external>
+                {tr(content.volunteer.button)}
+              </DossierBtn>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -554,9 +560,30 @@ export function DossierWorld() {
           </div>
           <div className="text-[0.8rem] text-muted">
             <Kicker>{tr(content.footer.contactLabel)}</Kicker>
-            <p className="mt-2">{brand.email}</p>
-            <p>Instagram · Facebook · LinkedIn</p>
-            <p className="mt-2 text-[0.7rem] text-muted/70">{tr(content.footer.placeholderNote)}</p>
+            <p className="mt-2">
+              <a href={`mailto:${brand.email}`} className="break-all transition-colors hover:text-accent">
+                {brand.email}
+              </a>
+            </p>
+            {brand.phone && (
+              <p className="mt-1">
+                <a href={`tel:${brand.phone.replace(/[^+\d]/g, "")}`} className="transition-colors hover:text-accent">
+                  {brand.phone}
+                </a>
+              </p>
+            )}
+            <p className="mt-2 flex flex-wrap items-center gap-x-2">
+              <a href={brand.socials.instagram} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-accent">
+                Instagram
+              </a>
+              <span aria-hidden>·</span>
+              {/* No Facebook page yet — deliberately plain text, not a link. */}
+              <span>Facebook</span>
+              <span aria-hidden>·</span>
+              <a href={brand.socials.linkedin} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-accent">
+                LinkedIn
+              </a>
+            </p>
           </div>
           <div className="text-[0.8rem] text-muted sm:text-right">
             <p>{tr(content.footer.privacy)}</p>

@@ -44,3 +44,4 @@ next-env.d.ts
 # optimized web versions the app uses live in /public/images. Drop this line
 # to track the source kit.
 /LANDING PAGE MIA FOUNDATION/
+.env*.local
