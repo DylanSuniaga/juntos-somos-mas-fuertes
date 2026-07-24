@@ -454,6 +454,7 @@ export function DossierWorld() {
                         height={480}
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="h-full w-full object-cover"
+                        style={p.name === "Ninoska Suniaga" ? { objectPosition: "center top" } : undefined}
                       />
                     ) : (
                       <div className="flex h-full w-full items-center justify-center bg-surface-2 font-display text-3xl font-black text-accent/60">
