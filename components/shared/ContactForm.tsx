@@ -12,7 +12,7 @@ type Status = "idle" | "sending" | "success" | "error";
  * to showing the direct email address — the form is never a dead end.
  */
 export function ContactForm() {
-  const { tr } = useLang();
+  const { tr, lang } = useLang();
   const c = content.contact;
   const [status, setStatus] = useState<Status>("idle");
 
@@ -37,6 +37,7 @@ export function ContactForm() {
       org: fd.get("org"),
       interest: fd.get("interest"),
       message: fd.get("message"),
+      lang, // so the confirmation email matches the visitor's language
       company_website: fd.get("company_website"), // honeypot
     };
     try {
