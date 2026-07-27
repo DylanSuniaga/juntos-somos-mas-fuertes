@@ -45,15 +45,22 @@ Real assets are wired: brand logos (`public/images/logo-red.png`, `logo-black.pn
 ## CTAs
 
 All CTA destinations resolve from **`links` in `lib/content.ts`** — never hardcode an `href`.
-- `links.gala` — every "Sé parte de este legado" / "Conviértete en aliado" button. Dubraska's Gala sales landing isn't live yet, so this is a **pre-filled `mailto:`** (the foundation chose email over a PDF so they can actually talk to the donor). **Set `GALA_LANDING_URL` at the top of `lib/content.ts` when the landing ships — that one line switches all of them, and `links.galaIsLive` flips the buttons to `target="_blank"`.**
+- `links.gala` — every "Sé parte de este legado" / "Conviértete en aliado" button. Dubraska's Gala sales landing isn't live yet, so these now **scroll to the on-page `#contacto` form** (2026-07-27), which captures the lead via Resend (was a pre-filled `mailto:` before the form existed). **Set `GALA_LANDING_URL` at the top of `lib/content.ts` when the landing ships — that one line switches all of them, and `links.galaIsLive` flips the buttons to `target="_blank"`.**
 - `links.volunteer` — the foundation's Google Form. Live.
 - No payment processor wired, and no "Donar" button — the foundation collapsed donation into the single gala CTA on purpose.
+
+## Contact form (2026-07-27)
+
+`#contacto` section (before the footer) → `components/shared/ContactForm.tsx` → `POST app/api/contact/route.ts` → **Resend**. Low volume, free tier.
+- Env vars (documented in `.env.example`): `RESEND_API_KEY` (required), `CONTACT_FROM` (verified-domain sender; falls back to `onboarding@resend.dev` which only delivers to the Resend account's own email), `CONTACT_TO` (defaults to `mia.events.franci@gmail.com` — the client's temporary inbox).
+- **Sending from the foundation domain requires DNS verification in Resend.** Until `RESEND_API_KEY` is set the route returns 503 and the form degrades to "email us directly at {brand.email}" — never a dead end. Honeypot field `company_website` drops bots.
+- The gala CTAs still use `links.gala` (mailto). **Flip them to `#contacto` only once Resend is confirmed working** — don't route the primary conversion path at a form that can't send yet.
 
 ## Deliberate divergences (don't "fix" these back)
 
 - **Facebook is plain text in the footer, not a link** — the foundation has no page yet. Give it an href only when `brand.socials.facebook` gets a URL.
 - **`brand.phone` is `null`** — pending Karen's answer on which number to publish. Set it to a string and the footer row renders itself.
-- **`content.why.video.embedUrl` is `null`** — the founder-story video isn't filmed. The block renders an inert placeholder plate by design; set the URL to swap in the embed.
+- **`content.why.video.embedUrl` is `null`** — the founder-story video isn't filmed. **The whole section-02 video block (title, body, play button) is now hidden while this is null** (2026-07-27) — the play button read as a broken CTA. Set the URL and the block reappears; nothing was deleted.
 - **The component/folder is still named `dossier`** while the design is called "Signature" publicly. Renaming buys nothing.
 
 ## Corrections pass (2026-07-22)

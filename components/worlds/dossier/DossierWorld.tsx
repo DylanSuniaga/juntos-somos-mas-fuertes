@@ -7,6 +7,7 @@ import { leadership } from "@/lib/team";
 import { useLang, type Bi } from "@/components/providers/LanguageProvider";
 import { Reveal } from "@/components/primitives/Reveal";
 import { PlaceholderImage } from "@/components/primitives/PlaceholderImage";
+import { ContactForm } from "@/components/shared/ContactForm";
 
 /* =========================================================================
    DOSSIER WORLD — the foundation content styled as its own BRAND MANUAL,
@@ -249,7 +250,11 @@ export function DossierWorld() {
             </Reveal>
           </div>
 
-          {/* founder's story video — placeholder until the foundation films it */}
+          {/* Founder's story video. Hidden until a URL exists (2026-07-27): the
+             block — including the play button — only renders once
+             content.why.video.embedUrl is set. Set that one field to bring it
+             back; nothing here was deleted. */}
+          {content.why.video.embedUrl && (
           <Reveal className="mt-12">
             <div className="grid items-center gap-8 rounded-token border border-line bg-surface p-7 sm:grid-cols-[1fr_auto] sm:p-9">
               <div>
@@ -273,6 +278,7 @@ export function DossierWorld() {
               </div>
             </div>
           </Reveal>
+          )}
         </div>
       </section>
 
@@ -548,6 +554,25 @@ export function DossierWorld() {
               </DossierBtn>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ===== CONTACTO ===== */}
+      <section id="contacto" className="scroll-mt-6 border-t border-line">
+        <div className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
+          <Reveal>
+            <Kicker>{tr(content.contact.chapter)}</Kicker>
+            <h2 className="mt-3 font-display text-[1.9rem] font-black leading-[1.05] tracking-[-0.01em] text-ink sm:text-4xl">
+              {tr(content.contact.title)}
+            </h2>
+            <span className="mt-4 block h-[3px] w-14 bg-accent" />
+            <p className="mt-5 max-w-2xl text-[0.92rem] leading-relaxed text-muted">
+              {tr(content.contact.body)}
+            </p>
+          </Reveal>
+          <Reveal className="mt-8">
+            <ContactForm />
+          </Reveal>
         </div>
       </section>
 

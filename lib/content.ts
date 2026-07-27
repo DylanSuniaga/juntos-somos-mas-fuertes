@@ -36,33 +36,16 @@ export const brand = {
 
 /**
  * Dubraska's Gala sales landing page. It isn't live yet, so every gala CTA
- * ("Sé parte de este legado" / "Conviértete en aliado") opens a pre-filled
- * email instead — the foundation preferred a real conversation over handing
- * out a PDF with no way back. Set this to the URL when it ships and all five
- * CTAs follow it; no other edit needed.
+ * ("Sé parte de este legado" / "Conviértete en aliado") scrolls down to the
+ * on-page contact form instead (2026-07-27) — submissions are captured via
+ * Resend and emailed to the foundation. Set this to the URL when the landing
+ * ships and all CTAs follow it (opening in a new tab); no other edit needed.
  */
 const GALA_LANDING_URL: string | null = null;
 
-const galaMailto =
-  `mailto:${brand.email}` +
-  `?subject=${encodeURIComponent("Gala de Influencia Miami 2026 — quiero ser parte")}` +
-  `&body=${encodeURIComponent(
-    [
-      "Hola equipo MÍA,",
-      "",
-      "Me gustaría recibir información sobre cómo apoyar la Gala de Influencia Miami 2026.",
-      "",
-      "Nombre:",
-      "Empresa / organización:",
-      "Teléfono:",
-      "",
-      "Gracias.",
-    ].join("\n"),
-  )}`;
-
 export const links = {
-  /** Every "gala" CTA on every world points here. */
-  gala: GALA_LANDING_URL ?? galaMailto,
+  /** Every "gala" CTA points here — the contact form anchor until the landing ships. */
+  gala: GALA_LANDING_URL ?? "#contacto",
   galaIsLive: GALA_LANDING_URL !== null,
   volunteer:
     "https://docs.google.com/forms/d/e/1FAIpQLSdnWbqsHkAq1WAqDshYuHDV0PSCoc2-YW6Y-LJxYXXYSPaSIQ/viewform",
@@ -444,6 +427,42 @@ export const content = {
       en: "Share your time, your experience, and your talent to strengthen the programs and initiatives of Mujer Influencia Actual Foundation.",
     },
     button: { es: "Quiero ser voluntario", en: "I want to volunteer" },
+  },
+
+  contact: {
+    chapter: { es: "Contáctanos", en: "Contact us" },
+    title: {
+      es: "¿Quieres apoyar la causa?",
+      en: "Want to support the cause?",
+    },
+    body: {
+      es: "Cuéntanos cómo te gustaría sumarte —como aliado, patrocinador o donante de la Gala— y el equipo de MÍA te responderá directamente.",
+      en: "Tell us how you'd like to get involved —as an ally, sponsor, or Gala donor— and the MÍA team will reply to you directly.",
+    },
+    fields: {
+      name: { es: "Nombre", en: "Name" },
+      email: { es: "Correo electrónico", en: "Email" },
+      phone: { es: "Teléfono (opcional)", en: "Phone (optional)" },
+      org: { es: "Empresa / organización (opcional)", en: "Company / organization (optional)" },
+      interest: { es: "Me interesa", en: "I'm interested in" },
+      message: { es: "Mensaje", en: "Message" },
+    },
+    interests: {
+      gala: { es: "Patrocinar / asistir a la Gala", en: "Sponsoring / attending the Gala" },
+      ally: { es: "Ser aliado u organización asociada", en: "Becoming an ally or partner org" },
+      donate: { es: "Donar a la fundación", en: "Donating to the foundation" },
+      other: { es: "Otro", en: "Other" },
+    },
+    submit: { es: "Enviar mensaje", en: "Send message" },
+    sending: { es: "Enviando…", en: "Sending…" },
+    success: {
+      es: "¡Gracias! Recibimos tu mensaje y te responderemos pronto.",
+      en: "Thank you! We received your message and will reply soon.",
+    },
+    error: {
+      es: "No se pudo enviar. Escríbenos directamente a",
+      en: "Couldn't send. Please email us directly at",
+    },
   },
 
   closing: {
