@@ -592,8 +592,29 @@ export function DossierWorld() {
             <p className="mt-3 font-display font-semibold italic text-accent">{brand.hashtag}</p>
           </div>
         </div>
-        <div className="border-t border-line py-4 text-center font-mono text-[0.64rem] uppercase tracking-[0.18em] text-muted">
-          © 2026 {brand.legalName} · {tr(content.footer.rights)}
+        <div className="border-t border-line py-6">
+          <p className="text-center font-mono text-[0.64rem] uppercase tracking-[0.18em] text-muted">
+            © 2026 {brand.legalName} · {tr(content.footer.rights)}
+          </p>
+          {/* Studio credit — Pryxus double-slit mark + wordmark (accent #C25C79, hardcoded per brand). */}
+          <a
+            href="https://pryxus.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Hecho por Pryxus"
+            className="group mx-auto mt-6 flex w-fit flex-col items-center gap-1.5 opacity-70 transition-opacity hover:opacity-100"
+          >
+            <span className="font-mono text-[0.55rem] uppercase tracking-[0.3em] text-muted">
+              {tr({ es: "Hecho por", en: "Made by" })}
+            </span>
+            <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden>
+              <path d="M2 8 C 10 8, 14 16, 22 16 H 30" stroke="#C25C79" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M2 24 C 10 24, 14 16, 22 16" stroke="#C25C79" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.8" />
+            </svg>
+            <span className="font-pryxus text-lg leading-none tracking-[0.25em] text-ink">
+              PRY<span style={{ color: "#C25C79" }}>X</span>US
+            </span>
+          </a>
         </div>
       </footer>
     </div>

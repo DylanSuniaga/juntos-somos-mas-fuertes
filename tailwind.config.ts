@@ -33,6 +33,7 @@ const config: Config = {
         display: ["var(--font-display)", "Georgia", "serif"],
         body: ["var(--font-body)", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        pryxus: ["var(--font-bebas)", "Impact", "sans-serif"],
       },
       borderRadius: {
         token: "var(--radius)",

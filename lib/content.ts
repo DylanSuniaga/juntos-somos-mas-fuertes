@@ -339,8 +339,8 @@ export const content = {
       en: "Today we invite you to join this cause and show that, together, we are stronger.",
     },
     button: {
-      es: "Sé parte de este legado.",
-      en: "Be part of this legacy.",
+      es: "Sé parte de este legado",
+      en: "Be part of this legacy",
     },
   },
 
@@ -455,7 +455,7 @@ export const content = {
       es: "Juntos construimos oportunidades, formamos líderes y dejamos un legado para las futuras generaciones.",
       en: "Together we build opportunities, shape leaders, and leave a legacy for future generations.",
     },
-    button: { es: "Sé parte de este legado.", en: "Be part of this legacy." },
+    button: { es: "Sé parte de este legado", en: "Be part of this legacy" },
     institutional: {
       es: "Porque las comunidades más fuertes nacen cuando personas, organizaciones y empresas deciden trabajar unidas por un propósito común.",
       en: "Because the strongest communities are born when people, organizations, and companies decide to work together for a common purpose.",

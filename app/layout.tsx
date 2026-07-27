@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins, JetBrains_Mono, Playfair_Display } from "next/font/google";
+import { Poppins, JetBrains_Mono, Playfair_Display, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import { CinematicProvider } from "@/components/providers/CinematicProvider";
@@ -31,8 +31,15 @@ const jetbrains = JetBrains_Mono({
   variable: "--font-jetbrains",
   display: "swap",
 });
+/** Pryxus wordmark face — used only in the "Made by Pryxus" footer credit. */
+const bebas = Bebas_Neue({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-bebas",
+  display: "swap",
+});
 
-const fontVars = [playfair.variable, poppins.variable, jetbrains.variable].join(" ");
+const fontVars = [playfair.variable, poppins.variable, jetbrains.variable, bebas.variable].join(" ");
 
 const SITE = "https://mia-foundation.org";
 
