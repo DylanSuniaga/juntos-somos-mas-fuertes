@@ -25,8 +25,11 @@ export function ContactForm() {
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    // Capture the form now — e.currentTarget is nulled after the await below,
+    // so calling .reset() on it later would throw and falsely flip to "error".
+    const form = e.currentTarget;
     setStatus("sending");
-    const fd = new FormData(e.currentTarget);
+    const fd = new FormData(form);
     const payload = {
       name: fd.get("name"),
       email: fd.get("email"),
@@ -42,8 +45,12 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      setStatus(res.ok ? "success" : "error");
-      if (res.ok) e.currentTarget.reset();
+      if (res.ok) {
+        form.reset();
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }
