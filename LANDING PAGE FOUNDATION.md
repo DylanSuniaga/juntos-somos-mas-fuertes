@@ -198,8 +198,6 @@ Karen Mairena Mendoza \- President
 
 Francilenny Gonzalez \- Vice President
 
-Annelys Taveras \- Secretary
-
 Ninoska Suniaga \- Treasurer
 
 # **10\. TRANSPARENCIA Y GOBERNANZA**

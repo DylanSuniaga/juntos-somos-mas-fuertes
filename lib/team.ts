@@ -11,7 +11,7 @@ export type Person = {
 /**
  * Names, roles, and countries verbatim from the foundation brief, in the
  * display order the foundation asked for: Karen · Claudia · Francilenny on
- * the top row, Annelys · Ninoska below.
+ * the top row, Ninoska below.
  */
 
 const karen: Person = {
@@ -35,16 +35,10 @@ const francilenny: Person = {
   photo: "/images/team/francilenny.jpg",
 };
 
-const annelys: Person = {
-  name: "Annelys Taveras",
-  role: { es: "Secretaria", en: "Secretary" },
-  photo: "/images/team/annelys.jpg",
-};
-
 const ninoska: Person = {
   name: "Ninoska Suniaga",
   role: { es: "Tesorera", en: "Treasurer" },
   photo: "/images/team/ninoska.jpg",
 };
 
-export const leadership: Person[] = [karen, claudia, francilenny, annelys, ninoska];
+export const leadership: Person[] = [karen, claudia, francilenny, ninoska];
