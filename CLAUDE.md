@@ -34,7 +34,7 @@ app/layout.tsx     fonts + providers + ES/EN toggle  →  app/page.tsx  →  Dos
 ## Content & i18n
 
 - **`lib/content.ts`** — every string as bilingual `{ es, en }` leaves. Resolve with `tr()` from `LanguageProvider` (`const { tr } = useLang(); tr(content.hero.title)`). **Components never hardcode copy.** Also exports `links` (CTA destinations) and `brand`.
-- **`lib/team.ts`** — the four people, in the display order the foundation specified (Karen · Claudia · Francilenny top row, Ninoska below). A former board member was removed urgently (2026-09-22) — don’t re-add her from the Drive kit or git history.
+- **`lib/team.ts`** — the three people, in the display order the foundation specified (Karen · Claudia · Ninoska). Two former members were removed at the foundation's request (2026-09-22, and Francilenny Gonzalez 2026-11-03 — no longer part of the team since 2026-09-17) — don’t re-add either from the Drive kit or git history.
 
 ## Images
 

@@ -190,13 +190,9 @@ MÍA está liderada por un equipo fundador y una Junta Directiva comprometidos c
 
 *Claudia Lozano \- Founding Partner \- Canadá*
 
-*Francilenny Gonzalez \- Founding Partner & Vice President \-USA*
-
 ## **Board of Directors**
 
 Karen Mairena Mendoza \- President
-
-Francilenny Gonzalez \- Vice President
 
 Ninoska Suniaga \- Treasurer
 
