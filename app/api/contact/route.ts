@@ -23,9 +23,9 @@ import { brand } from "@/lib/content";
  * "Reply" in the inbox answers the lead directly.
  */
 
-// Where leads land right now (client's choice, 2026-07-27). Override anytime
+// Where leads land right now (Karen's Gmail, 2026-11-03). Override anytime
 // with the CONTACT_TO env var — no code change needed.
-const FALLBACK_TO = "mia.events.franci@gmail.com";
+const FALLBACK_TO = "miainfluencias@gmail.com";
 const FALLBACK_FROM = "MÍA Foundation <onboarding@resend.dev>";
 
 function isEmail(v: string) {

@@ -52,7 +52,7 @@ All CTA destinations resolve from **`links` in `lib/content.ts`** — never hard
 ## Contact form (2026-07-27)
 
 `#contacto` section (before the footer) → `components/shared/ContactForm.tsx` → `POST app/api/contact/route.ts` → **Resend**. Low volume, free tier.
-- Env vars (documented in `.env.example`): `RESEND_API_KEY` (required), `CONTACT_FROM` (verified-domain sender; falls back to `onboarding@resend.dev` which only delivers to the Resend account's own email), `CONTACT_TO` (defaults to `mia.events.franci@gmail.com` — the client's temporary inbox).
+- Env vars (documented in `.env.example`): `RESEND_API_KEY` (required), `CONTACT_FROM` (verified-domain sender; falls back to `onboarding@resend.dev` which only delivers to the Resend account's own email), `CONTACT_TO` (defaults to `miainfluencias@gmail.com` — Karen's Gmail, set 2026-11-03 after the previous inbox's owner left; the domain has no mailbox yet).
 - **Sending from the foundation domain requires DNS verification in Resend.** Until `RESEND_API_KEY` is set the route returns 503 and the form degrades to "email us directly at {brand.email}" — never a dead end. Honeypot field `company_website` drops bots.
 - The gala CTAs still use `links.gala` (mailto). **Flip them to `#contacto` only once Resend is confirmed working** — don't route the primary conversion path at a form that can't send yet.
 
