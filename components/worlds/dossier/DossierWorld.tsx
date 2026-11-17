@@ -419,6 +419,27 @@ export function DossierWorld() {
             </div>
           </Reveal>
 
+          {/* upcoming galas calendar */}
+          <Reveal>
+            <div className="mt-10">
+              <h3 className="font-mono text-[0.66rem] uppercase tracking-[0.18em] text-accent">
+                {tr(content.campaign.calendar.title)}
+              </h3>
+              <ol className="mt-4 border-t border-line">
+                {content.campaign.calendar.items.map((ev) => (
+                  <li
+                    key={ev.date.en + ev.name.en}
+                    className="grid gap-1 border-b border-line py-4 sm:grid-cols-[11rem_1fr_auto] sm:items-baseline sm:gap-6"
+                  >
+                    <span className="font-mono text-[0.72rem] uppercase tracking-[0.12em] text-muted">{tr(ev.date)}</span>
+                    <span className="font-display text-[1rem] font-bold leading-snug text-ink">{tr(ev.name)}</span>
+                    {ev.place ? <span className="text-[0.85rem] text-muted sm:text-right">{ev.place}</span> : <span />}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </Reveal>
+
           <div className="mt-12 text-center">
             <p className="mx-auto max-w-2xl font-display text-xl font-medium italic leading-snug text-ink sm:text-2xl">
               {tr(content.campaign.invite)}
