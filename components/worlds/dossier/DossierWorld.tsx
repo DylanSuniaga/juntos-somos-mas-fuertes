@@ -8,6 +8,7 @@ import { useLang, type Bi } from "@/components/providers/LanguageProvider";
 import { Reveal } from "@/components/primitives/Reveal";
 import { PlaceholderImage } from "@/components/primitives/PlaceholderImage";
 import { ContactForm } from "@/components/shared/ContactForm";
+import { NominationForm } from "@/components/shared/NominationForm";
 
 /* =========================================================================
    DOSSIER WORLD — the foundation content styled as its own BRAND MANUAL,
@@ -439,6 +440,21 @@ export function DossierWorld() {
               </ol>
             </div>
           </Reveal>
+
+          {/* nominee registration form */}
+          <div id="inscripcion" className="mt-14 scroll-mt-6 grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:gap-12">
+            <div>
+              <p className="font-mono text-[0.66rem] uppercase tracking-[0.18em] text-accent">
+                {tr(content.nomination.kicker)}
+              </p>
+              <h3 className="mt-3 font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">
+                {tr(content.nomination.title)}
+              </h3>
+              <span className="mt-4 block h-[2px] w-10 bg-accent" />
+              <p className="mt-5 text-[0.92rem] leading-relaxed text-muted">{tr(content.nomination.body)}</p>
+            </div>
+            <NominationForm />
+          </div>
 
           <div className="mt-12 text-center">
             <p className="mx-auto max-w-2xl font-display text-xl font-medium italic leading-snug text-ink sm:text-2xl">
