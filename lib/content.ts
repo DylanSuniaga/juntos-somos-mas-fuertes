@@ -292,8 +292,8 @@ export const content = {
         en: "Since its beginnings, the Influence Gala has brought together leaders, professionals, business owners, entrepreneurs, and changemakers to honor those who inspire through their work and contribute to their communities. Over the years, every edition has supported a cause with purpose. This edition, that commitment takes a further step: the funds raised go to one of Mujer Influencia Actual Foundation's programs, strengthening the reach and sustainability of that social work.",
       },
       {
-        es: "Los fondos recaudados durante la Gala de Reconocimiento MÍA Mujer Influencia Actual Los Ángeles 2027 serán destinados al programa de Impacto Social y Apoyo Humanitario de Mujer Influencia Actual Foundation para apoyar iniciativas dirigidas a niños, niñas y jóvenes en condición de vulnerabilidad afectados por el doble terremoto ocurrido en Venezuela. En alianza con organizaciones que trabajan directamente en las comunidades, contribuiremos a impulsar acciones que fortalezcan su bienestar, acompañen su recuperación y generen nuevas oportunidades para su futuro.",
-        en: "Funds raised during the MÍA Mujer Influencia Actual Recognition Gala Los Angeles 2027 will go to Mujer Influencia Actual Foundation's Social Impact & Humanitarian Support program, backing initiatives for vulnerable children and young people affected by the double earthquake in Venezuela. Partnering with organizations working directly in those communities, we will help drive actions that strengthen their well-being, support their recovery, and open new opportunities for their future.",
+        es: "Los fondos recaudados durante la Gala de Reconocimiento MÍA Mujer Influencia Actual California 2027 serán destinados al programa de Impacto Social y Apoyo Humanitario de Mujer Influencia Actual Foundation para apoyar iniciativas dirigidas a niños, niñas y jóvenes en condición de vulnerabilidad afectados por el doble terremoto ocurrido en Venezuela. En alianza con organizaciones que trabajan directamente en las comunidades, contribuiremos a impulsar acciones que fortalezcan su bienestar, acompañen su recuperación y generen nuevas oportunidades para su futuro.",
+        en: "Funds raised during the MÍA Mujer Influencia Actual Recognition Gala California 2027 will go to Mujer Influencia Actual Foundation's Social Impact & Humanitarian Support program, backing initiatives for vulnerable children and young people affected by the double earthquake in Venezuela. Partnering with organizations working directly in those communities, we will help drive actions that strengthen their well-being, support their recovery, and open new opportunities for their future.",
       },
     ] as Bi[],
     /** Triptych under the campaign copy. */
@@ -323,8 +323,8 @@ export const content = {
     /** Next gala — date, time and venue (from Karen, 2026-11-17). */
     event: {
       name: {
-        es: "Gala de Reconocimiento MÍA Mujer Influencia Actual · Los Ángeles 2027",
-        en: "MÍA Mujer Influencia Actual Recognition Gala · Los Angeles 2027",
+        es: "Gala de Reconocimiento MÍA Mujer Influencia Actual · California 2027",
+        en: "MÍA Mujer Influencia Actual Recognition Gala · California 2027",
       },
       dateLabel: { es: "Fecha", en: "Date" },
       date: { es: "Jueves 28 de enero de 2027", en: "Thursday, January 28, 2027" },
@@ -345,7 +345,7 @@ export const content = {
       items: [
         {
           date: { es: "28 de enero, 2027", en: "January 28, 2027" },
-          name: { es: "Gala de Reconocimiento MÍA · Los Ángeles", en: "MÍA Recognition Gala · Los Angeles" },
+          name: { es: "Gala de Reconocimiento MÍA · California", en: "MÍA Recognition Gala · California" },
           place: "Martin's Event Center · Inglewood, CA",
         },
         {
@@ -510,7 +510,7 @@ export const content = {
       en: "Tell us who you are, what you do, and the impact of your work.",
     },
     galas: [
-      { es: "Los Ángeles — enero 2027", en: "Los Angeles — January 2027" },
+      { es: "California — enero 2027", en: "California — January 2027" },
       { es: "Canadá — abril 2027", en: "Canada — April 2027" },
       { es: "Miami — mayo 2027", en: "Miami — May 2027" },
       { es: "Guatemala — julio 2027", en: "Guatemala — July 2027" },
