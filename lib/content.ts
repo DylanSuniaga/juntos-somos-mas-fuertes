@@ -335,41 +335,6 @@ export const content = {
       address: "3215 W Manchester Blvd, Inglewood, CA 90305",
       mapCta: { es: "Ver en el mapa", en: "View on map" },
     },
-    /**
-     * Upcoming events calendar (from Karen, 2026-11-17). Month-only dates are
-     * unconfirmed days — replace with the exact date when the foundation sends it.
-     * Honduras deliberately omitted (not confirmed).
-     */
-    calendar: {
-      title: { es: "Próximas Galas", en: "Upcoming Galas" },
-      items: [
-        {
-          date: { es: "28 de enero, 2027", en: "January 28, 2027" },
-          name: { es: "Gala de Reconocimiento MÍA · California", en: "MÍA Recognition Gala · California" },
-          place: "Martin's Event Center · Inglewood, CA",
-        },
-        {
-          date: { es: "Febrero 2027", en: "February 2027" },
-          name: { es: "Congreso MÍA", en: "MÍA Congress" },
-          place: null,
-        },
-        {
-          date: { es: "Abril 2027", en: "April 2027" },
-          name: { es: "Gala de Reconocimiento MÍA · Canadá", en: "MÍA Recognition Gala · Canada" },
-          place: null,
-        },
-        {
-          date: { es: "13 de mayo, 2027", en: "May 13, 2027" },
-          name: { es: "Gala de Reconocimiento MÍA · Miami", en: "MÍA Recognition Gala · Miami" },
-          place: "Diamond Venue at Doral · Doral, FL",
-        },
-        {
-          date: { es: "Julio 2027", en: "July 2027" },
-          name: { es: "Gala de Reconocimiento MÍA · Guatemala", en: "MÍA Recognition Gala · Guatemala" },
-          place: null,
-        },
-      ] as { date: Bi; name: Bi; place: string | null }[],
-    },
     invite: {
       es: "Hoy te invitamos a sumarte a esta causa y demostrar que, juntos, somos más fuertes.",
       en: "Today we invite you to join this cause and show that, together, we are stronger.",
