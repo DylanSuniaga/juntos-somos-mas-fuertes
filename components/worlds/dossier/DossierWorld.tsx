@@ -378,47 +378,6 @@ export function DossierWorld() {
             </p>
           </div>
 
-          {/* next gala — date, time, venue */}
-          <Reveal>
-            <div className="mt-12 rounded-token border border-line bg-surface p-6 sm:p-8">
-              <h3 className="font-display text-lg font-bold leading-snug text-ink sm:text-xl">
-                {tr(content.campaign.event.name)}
-              </h3>
-              <span className="mt-3 block h-[2px] w-10 bg-accent" />
-              <dl className="mt-6 grid gap-6 sm:grid-cols-3">
-                <div>
-                  <dt className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-accent">
-                    {tr(content.campaign.event.dateLabel)}
-                  </dt>
-                  <dd className="mt-2 text-[0.95rem] text-ink">{tr(content.campaign.event.date)}</dd>
-                </div>
-                <div>
-                  <dt className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-accent">
-                    {tr(content.campaign.event.timeLabel)}
-                  </dt>
-                  <dd className="mt-2 text-[0.95rem] text-ink">{tr(content.campaign.event.time)}</dd>
-                </div>
-                <div>
-                  <dt className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-accent">
-                    {tr(content.campaign.event.venueLabel)}
-                  </dt>
-                  <dd className="mt-2 text-[0.95rem] text-ink">
-                    {content.campaign.event.venue}
-                    <span className="mt-1 block text-[0.85rem] text-muted">{content.campaign.event.address}</span>
-                    <a
-                      href={links.venueMap}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 inline-block font-mono text-[0.62rem] uppercase tracking-[0.14em] text-accent underline underline-offset-4"
-                    >
-                      {tr(content.campaign.event.mapCta)} →
-                    </a>
-                  </dd>
-                </div>
-              </dl>
-            </div>
-          </Reveal>
-
           <div className="mt-12 text-center">
             <p className="mx-auto max-w-2xl font-display text-xl font-medium italic leading-snug text-ink sm:text-2xl">
               {tr(content.campaign.invite)}

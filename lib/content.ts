@@ -49,9 +49,6 @@ export const links = {
   galaIsLive: GALA_LANDING_URL !== null,
   volunteer:
     "https://docs.google.com/forms/d/e/1FAIpQLSdnWbqsHkAq1WAqDshYuHDV0PSCoc2-YW6Y-LJxYXXYSPaSIQ/viewform",
-  /** Gala venue on Google Maps (Martin's Event Center, Inglewood). */
-  venueMap:
-    "https://www.google.com/maps/search/?api=1&query=Martin%27s+Event+Center+3215+W+Manchester+Blvd+Inglewood+CA+90305",
 };
 
 export const content = {
@@ -288,12 +285,12 @@ export const content = {
     },
     paragraphs: [
       {
-        es: "Desde sus inicios, la Gala de Influencia ha reunido a líderes, profesionales, empresarios, emprendedores y agentes de cambio para reconocer a quienes inspiran con su trayectoria y contribuyen al desarrollo de sus comunidades. A lo largo de los años, cada edición ha apoyado una causa con propósito. En esta edición, ese compromiso da un nuevo paso al destinar los fondos recaudados a uno de los programas de Mujer Influencia Actual Foundation, fortaleciendo el alcance y la sostenibilidad de esa labor social.",
-        en: "Since its beginnings, the Influence Gala has brought together leaders, professionals, business owners, entrepreneurs, and changemakers to honor those who inspire through their work and contribute to their communities. Over the years, every edition has supported a cause with purpose. This edition, that commitment takes a further step: the funds raised go to one of Mujer Influencia Actual Foundation's programs, strengthening the reach and sustainability of that social work.",
+        es: "Desde sus inicios, la Gala de Influencia ha reunido a líderes, profesionales, empresarios, emprendedores y agentes de cambio para reconocer a quienes inspiran con su trayectoria y contribuyen al desarrollo de sus comunidades. A lo largo de los años, cada edición ha apoyado una causa con propósito. En 2026, ese compromiso da un nuevo paso al destinar los fondos recaudados a uno de los programas de Mujer Influencia Actual Foundation, fortaleciendo el alcance y la sostenibilidad de esa labor social.",
+        en: "Since its beginnings, the Influence Gala has brought together leaders, professionals, business owners, entrepreneurs, and changemakers to honor those who inspire through their work and contribute to their communities. Over the years, every edition has supported a cause with purpose. In 2026, that commitment takes a further step: the funds raised go to one of Mujer Influencia Actual Foundation's programs, strengthening the reach and sustainability of that social work.",
       },
       {
-        es: "Los fondos recaudados durante la Gala de Reconocimiento MÍA Mujer Influencia Actual California 2027 serán destinados al programa de Impacto Social y Apoyo Humanitario de Mujer Influencia Actual Foundation para apoyar iniciativas dirigidas a niños, niñas y jóvenes en condición de vulnerabilidad afectados por el doble terremoto ocurrido en Venezuela. En alianza con organizaciones que trabajan directamente en las comunidades, contribuiremos a impulsar acciones que fortalezcan su bienestar, acompañen su recuperación y generen nuevas oportunidades para su futuro.",
-        en: "Funds raised during the MÍA Mujer Influencia Actual Recognition Gala California 2027 will go to Mujer Influencia Actual Foundation's Social Impact & Humanitarian Support program, backing initiatives for vulnerable children and young people affected by the double earthquake in Venezuela. Partnering with organizations working directly in those communities, we will help drive actions that strengthen their well-being, support their recovery, and open new opportunities for their future.",
+        es: "Los fondos recaudados durante la Gala de Influencia Miami 2026 serán destinados al programa de Impacto Social y Apoyo Humanitario de Mujer Influencia Actual Foundation para apoyar iniciativas dirigidas a niños, niñas y jóvenes en condición de vulnerabilidad afectados por el doble terremoto ocurrido en Venezuela. En alianza con organizaciones que trabajan directamente en las comunidades, contribuiremos a impulsar acciones que fortalezcan su bienestar, acompañen su recuperación y generen nuevas oportunidades para su futuro.",
+        en: "Funds raised during the Miami 2026 Influence Gala will go to Mujer Influencia Actual Foundation's Social Impact & Humanitarian Support program, backing initiatives for vulnerable children and young people affected by the double earthquake in Venezuela. Partnering with organizations working directly in those communities, we will help drive actions that strengthen their well-being, support their recovery, and open new opportunities for their future.",
       },
     ] as Bi[],
     /** Triptych under the campaign copy. */
@@ -320,21 +317,6 @@ export const content = {
         },
       },
     ],
-    /** Next gala — date, time and venue (from Karen, 2026-11-17). */
-    event: {
-      name: {
-        es: "Gala de Reconocimiento MÍA Mujer Influencia Actual · California 2027",
-        en: "MÍA Mujer Influencia Actual Recognition Gala · California 2027",
-      },
-      dateLabel: { es: "Fecha", en: "Date" },
-      date: { es: "Jueves 28 de enero de 2027", en: "Thursday, January 28, 2027" },
-      timeLabel: { es: "Hora", en: "Time" },
-      time: { es: "6:30 p. m. – 10:00 p. m.", en: "6:30 PM – 10:00 PM" },
-      venueLabel: { es: "Lugar", en: "Venue" },
-      venue: "Martin's Event Center",
-      address: "3215 W Manchester Blvd, Inglewood, CA 90305",
-      mapCta: { es: "Ver en el mapa", en: "View on map" },
-    },
     invite: {
       es: "Hoy te invitamos a sumarte a esta causa y demostrar que, juntos, somos más fuertes.",
       en: "Today we invite you to join this cause and show that, together, we are stronger.",
